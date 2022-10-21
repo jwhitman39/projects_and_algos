@@ -27,7 +27,9 @@ const RecordList = (props) => {
                     <img className="col-10" alt= "" src={list[activeRecord].albumArt}></img>
                     <div className="my-4">
                         <Link to={`/oneRecord/${list[activeRecord]._id}`}>{list[activeRecord].albumName}</Link>
-                        <div>{list[activeRecord].artist}</div>
+                        <div>
+                            <Link to={`/oneArtist/${list[activeRecord].artist}`}>{list[activeRecord].artist}</Link>
+                        </div>
                     </div>
                 </div>
             :null }
@@ -40,10 +42,9 @@ const RecordList = (props) => {
                                 <img src={record.albumArt} alt="" className="col-4"></img>
                                 <div className="col col-4 mt-3 mx-center">
                                     <Link to={`/oneRecord/${record._id}`}>{record.albumName}</Link>
-                                    <p>{record.artist} </p>
-                                    <p>{record.genre}</p>
-                                    <p>{record.releaseYear}</p>
-                                </div>
+                                    <div><Link to={`/oneArtist/${record.artist}`}>{record.artist}</Link></div>
+                                    <div><Link to={`/oneGenre/${record.genre}`}>{record.genre}</Link></div>
+                                        <p>{record.releaseYear}</p></div>
                             </div>
                             )
                         }

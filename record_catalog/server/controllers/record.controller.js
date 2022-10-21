@@ -22,6 +22,26 @@ module.exports= {
             res.status(400).json(err)
         })
     },
+    getOneArtist: (req, res) =>{
+        Record.find({"artist" : req.params.artist})
+        .then((result)=>{
+            res.json(result)
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
+    getOneGenre: (req, res) =>{
+        Record.find({"genre" : req.params.genre})
+        .then((result)=>{
+            res.json(result)
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
     addRecord: (req, res) =>{
         Record.create(req.body)
         .then((result)=>{
