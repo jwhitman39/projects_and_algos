@@ -6,6 +6,7 @@ const NavBar = () => {
             <h1 className="text-primary">Jon's Record Catalog</h1>
             <NavLink to="/" className="">Add Record To Collection!</NavLink>
             <NavLink  to="/recordList" className="m-3">Catalog</NavLink>
+            <NavLink  to="/releaseYearList" className="m-3">By Year</NavLink>
         </div>
     )
 }

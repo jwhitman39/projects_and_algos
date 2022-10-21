@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 
-const OneArtist = () => {
-    const {artist} = useParams()
+const OneYear = () => {
+    const {releaseYear} = useParams()
     // const navigate = useNavigate()
 
     const [ record, setRecord ] = useState({})
     const [ list, setList ] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/oneArtist/${artist}`)
+        axios.get(`http://localhost:8000/api/oneYear/${releaseYear}`)
         .then((res)=>{
             console.log(res)
             setList(res.data)
@@ -21,15 +21,17 @@ const OneArtist = () => {
     }, [])
     return (
         <div className='bg-dark text-primary' style={{height:"100%"}}>
-            <h1>My {artist} Records</h1>
+            <h1>All Records From {releaseYear}</h1>
             {list.map((record, index)=>{
+                list.sort()
                 return (
                     <div key={index}>
                         <img src={record.albumArt} alt="" className="col-4"></img>
                         <div className="col col-4 mt-3 mx-center">
                             <Link to={`/oneRecord/${record._id}`}>{record.albumName}</Link>
-                            <p>{record.genre}</p>
-                            <p>{record.releaseYear}</p>
+                            <div><Link to={`/oneArtist/${record.artist}`}>{record.artist}</Link></div>
+                            <div><Link to={`/oneGenre/${record.genre}`}>{record.genre}</Link></div>
+                            <p>{record.rating} out of 5</p>
                         </div>
                     </div>
             )
@@ -38,4 +40,4 @@ const OneArtist = () => {
     )
 }
 
-export default OneArtist
+export default OneYear;

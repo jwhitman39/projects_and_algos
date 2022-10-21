@@ -21,7 +21,7 @@ const OneGenre = () => {
     }, [])
     return (
         <div className='bg-dark text-primary' style={{height:"100%"}}>
-            <h1>{record.genre} </h1>
+            <h1>My {genre} Records</h1>
             {list.map((record, index)=>{
                 return (
                     <div key={index}>

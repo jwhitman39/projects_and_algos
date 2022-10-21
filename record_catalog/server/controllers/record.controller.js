@@ -1,9 +1,20 @@
 // imports the Record model
 const Record = require('../models/record.model');
 // exports all the following functions
+const sort = {releaseYear: 1}
 module.exports= {
     getAllRecords: (req, res) =>{
         Record.find()
+        .then((result)=>{
+            res.json(result)
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
+    getAllReleaseYears: (req, res) =>{
+        Record.find({"releaseYear" : req.params.releaseYear})
         .then((result)=>{
             res.json(result)
         })
@@ -34,6 +45,16 @@ module.exports= {
     },
     getOneGenre: (req, res) =>{
         Record.find({"genre" : req.params.genre})
+        .then((result)=>{
+            res.json(result)
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
+    getOneYear: (req, res) =>{
+        Record.find({"releaseYear" : req.params.releaseYear})
         .then((result)=>{
             res.json(result)
         })
