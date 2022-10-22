@@ -3,10 +3,14 @@ const RecordController = require('../controllers/record.controller');
 // exports the following routes for use elsewhere
 module.exports = (app) => {
     // app.get('/api', RecordController.index);
-    // get all products
+    // get all Records
     app.get('/api/allRecords', RecordController.getAllRecords);
-    // get all products
+    // get all Release Years
     app.get('/api/allReleaseYears', RecordController.getAllRecords);
+    // get all Artists
+    app.get('/api/allArtists', RecordController.getAllRecords);
+    // get all Artists
+    app.get('/api/allGenres', RecordController.getAllRecords);
     // get one Record
     app.get('/api/oneRecord/:id', RecordController.getOneRecord)
     // get one Artist

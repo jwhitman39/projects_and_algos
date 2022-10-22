@@ -17,6 +17,18 @@ module.exports= {
         Record.find({"releaseYear" : req.params.releaseYear})
         .then((result)=>{
             res.json(result)
+            // res.sort({ releaseYear: "asc" })
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
+    getAllArtists: (req, res) =>{
+        Record.find({"artist" : req.params.artist})
+        .then((result)=>{
+            res.json(result)
+            // res.sort({ artist: "asc" })
         })
         .catch((err)=> {
             console.log(err)

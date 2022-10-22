@@ -7,6 +7,8 @@ const NavBar = () => {
             <NavLink to="/" className="">Add Record To Collection!</NavLink>
             <NavLink  to="/recordList" className="m-3">Catalog</NavLink>
             <NavLink  to="/releaseYearList" className="m-3">By Year</NavLink>
+            <NavLink  to="/artistList" className="m-3">By Artist</NavLink>
+            <NavLink  to="/genreList" className="m-3">By Genre</NavLink>
         </div>
     )
 }
