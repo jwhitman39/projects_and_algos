@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
 
-const EditForm = () => {
+const EditForm = (props) => {
     const [ albumArt, setAlbumArt ] = useState('')
     const [ albumName, setAlbumName ] = useState('')
     const [ artist, setArtist ] = useState('')
     const [ rating, setRating ] = useState('')
     const [ genre, setGenre ] = useState('')
     const [ releaseYear, setReleaseYear ] = useState('')
+    const [ playCount, setPlayCount ] = useState('')
     const [ errors, setErrors ] = useState({})
+    const {record, setRecord} = props
     const {id} = useParams()
     const navigate = useNavigate()
     useEffect(()=>{
@@ -21,21 +23,26 @@ const EditForm = () => {
             setRating(res.data.rating)
             setGenre(res.data.genre)
             setReleaseYear(res.data.releaseYear)
+            setPlayCount(res.data.playCount)
         }).catch((err)=>{
             console.log(err)
         })
     }, [])
     const updateHandler = (e) => {
         e.preventDefault()
+        console.log("======", id)
         axios.put(`http://localhost:8000/api/updateRecord/${id}`, {
             albumArt,
             albumName,
             artist,
             rating,
             genre,
-            releaseYear
-        }).then((res)=>{
+            releaseYear,
+            playCount
+        })
+    .then((res)=>{
             navigate('/recordList')
+            setRecord({...record, record: res.data})
         }).catch((err)=>{
             console.log(err)
             setErrors(err.response.data.errors)
@@ -98,6 +105,11 @@ const EditForm = () => {
                     <label className='form-label'>Release Year:</label>
                     <input value={releaseYear} className='form-control' type="number" onChange= {(e) => setReleaseYear(e.target.value)}/>
                     { errors.releaseYear ? <span className='text-danger'>{errors.releaseYear.message}</span> :null }
+                </p>
+                <p>
+                    <label className='form-label'>Play Count: {playCount}</label>
+                    <input placeholder= "0" className='form-control' type="number" onChange= {(e) => setPlayCount(e.target.value)}/>
+                    { errors.playCount ? <span className='text-danger'>{errors.playCount.message}</span> :null }
                 </p>
                 <input type="submit" className='btn btn-success' value="Update record"></input>
             </form>

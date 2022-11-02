@@ -9,6 +9,7 @@ const RecordForm = (props) => {
     const [ rating, setRating ] = useState('')
     const [ genre, setGenre ] = useState('')
     const [ releaseYear, setReleaseYear ] = useState('')
+    const [ playCount, setPlayCount ] = useState('')
     const [ errors, setErrors ] = useState({})
     const navigate = useNavigate()
     const onSubmitHandler = (e) => {
@@ -20,7 +21,8 @@ const RecordForm = (props) => {
             artist,
             rating,
             genre,
-            releaseYear
+            releaseYear,
+            playCount
         })
         .then((res)=>{
             console.log(res); 
@@ -33,13 +35,14 @@ const RecordForm = (props) => {
         })
     }
     return (
-        <div className='bg-dark text-white' style={{height:"100vh"}}>
+        <div className='bg-dark text-white' style={{height:"100%"}}>
             <form className='col-6 mx-auto' onSubmit = {onSubmitHandler}>
-                <p>
+                <div>
+                    <img src = {albumArt} />
                     <label className='form-label'>Album Art:</label>
                     <input value={albumArt} className='form-control' type="text" onChange= {(e) => setAlbumArt(e.target.value)}/>
                     { errors.albumArt ? <span className='text-danger'>{errors.albumArt.message}</span> :null }
-                </p>
+                </div>
                 <p>
                     <label className='form-label'>Album Name:</label>
                     <input value={albumName} className='form-control' type="text" onChange= {(e) => setAlbumName(e.target.value)}/>
@@ -90,6 +93,10 @@ const RecordForm = (props) => {
                     <label className='form-label'>Release Year:</label>
                     <input value={releaseYear} className='form-control' type="number" onChange= {(e) => setReleaseYear(e.target.value)}/>
                     { errors.releaseYear ? <span className='text-danger'>{errors.releaseYear.message}</span> :null }
+                </p>
+                <p>
+                    <label className='form-label'>Play Count: {playCount}</label>
+                    <input value={playCount} className='form-control' type="number" onChange={(e) => setPlayCount(e.target.value)}/>
                 </p>
                 <input type="submit" className='btn btn-success' value="Add record"></input>
             </form>

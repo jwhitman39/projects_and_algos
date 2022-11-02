@@ -14,7 +14,11 @@ const ArtistList = (props) => {
         .then((res)=>{
             console.log(res);
             setList(res.data);
-        })
+            // if (setList(res.data) !==null){
+            //         const unique = [...new Map(list.map((m) => [m.artist, m])).values()]
+            //         console.log(unique, "these are unique")
+            //         setList(unique)}
+            })
         .catch((err)=>{
             console.log(err);
         })

@@ -35,6 +35,7 @@ const OneRecord = () => {
             <p>Genre: {record.genre}</p>
             <p>Release Year: {record.releaseYear}</p>
             <p>Rating: {record.rating} out of 5</p>
+            <p>Play Count: {record.playCount} </p>
             <button className='btn btn-warning'><Link to={`/edit/${record._id}`}>Edit Record</Link></button>
             <button onClick={(e)=>deleteHandler(record._id)} className='btn btn-danger'>Delete Record!</button>
         </div>

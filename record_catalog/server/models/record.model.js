@@ -9,7 +9,7 @@ const RecordSchema = new mongoose.Schema({
         type: String,
         required: [true, "This field is required!"],
         // minLength: [2, "Must be at least 2 characters"],
-        // index: true
+        index: true
         // maxLength: [50, "Cannot be more than 50 characters"]
     },
     albumName: { 
@@ -63,18 +63,11 @@ const RecordSchema = new mongoose.Schema({
     releaseYear: {
         type: Number,
         required: [true, "This field is required!"]
+    },
+    playCount:{
+        type: Number,
+        required: [true, "This field is required!"],
     }
-    // skillTwo: {
-    //     type: String,
-    //     // minLength: [2, "Must be at least 2 characters"],
-    //     // maxLength: [50, "Cannot be more than 50 characters"]
-    // },
-    // skillThree: {
-    //     type: String,
-    //     // required: [true, "This field is required!"],
-    //     // minLength: [2, "Must be at least 2 characters"],
-    //     // maxLength: [50, "Cannot be more than 50 characters"]
-    // }
     // object gets id, created at, and updated at
 }, {timestamps: true});
 

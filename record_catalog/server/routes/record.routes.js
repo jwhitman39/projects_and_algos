@@ -23,6 +23,8 @@ module.exports = (app) => {
     app.post('/api/addRecord', RecordController.addRecord);
     // update Record
     app.put('/api/updateRecord/:id', RecordController.updateRecord);
+    // play Record
+    app.put('/api/playRecord/:id', RecordController.playRecord);
     // delete Record
     app.delete('/api/deleteRecord/:id', RecordController.deleteRecord)
 }
