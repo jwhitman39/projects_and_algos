@@ -31,11 +31,12 @@ app.use(cors());
 // //     })
 // })
 
-const Routes = require('./routes/record.routes')
-Routes(app)
+
+const routes = require('./routes/record.routes')
+routes(app)
 
 
 
 app.listen(PORT, ()=> 
-    console.log(`Listening on port: ${PORT}`)
+    console.log(`Testing on port: ${PORT}`)
 );

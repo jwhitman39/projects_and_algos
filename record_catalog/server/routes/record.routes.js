@@ -1,5 +1,6 @@
 // imports controller
 const RecordController = require('../controllers/record.controller');
+const Record = require('../models/record.model');
 // exports the following routes for use elsewhere
 module.exports = (app) => {
     // app.get('/api', RecordController.index);

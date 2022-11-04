@@ -16,7 +16,7 @@ import Stat from './components/Stat.js';
 import CoverFlow from './components/CoverFlow.js';
 // import Main from './views/Main';
 function App() {
-  const { record, setRecord } = useState({})
+  const [ record, setRecord ] = useState({})
   return (
     <div className="App">
       <BrowserRouter>

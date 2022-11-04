@@ -102,7 +102,7 @@ module.exports= {
     playRecord: (req, res) =>{
         console.log('++++++', req.body)
         Record.findOneAndUpdate(
-            {playCount: req.params.playCount},
+            {_id: req.params.id},
             req.body, 
             {new: true})
         .then((result)=>{
@@ -123,17 +123,7 @@ module.exports= {
             res.status(400).json(err)
         })
     },
-    playRecord: (req, res) =>{
-        Record.findById(req.params.id)
-        .then((result)=>{
-            res.json(result)
-            result.isPlayed==true
-        })
-        .catch((err)=> {
-            console.log(err)
-            res.status(400).json(err)
-        })
-    },
+
     // countAllGenres: (req, res) =>{
     //     Record.find({"genre" : req.params.genre})
     //     .then((result)=>{
