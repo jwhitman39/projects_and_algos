@@ -35,7 +35,7 @@ const RecordForm = (props) => {
         })
     }
     return (
-        <div className='bg-dark text-white' style={{height:"100%"}}>
+        <div className='bg-dark text-white' style={{height:"100vh"}}>
             <form className='col-6 mx-auto' onSubmit = {onSubmitHandler}>
                 <div>
                     <img src = {albumArt} />

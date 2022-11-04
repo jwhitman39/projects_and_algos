@@ -31,7 +31,7 @@ const OneYear = () => {
                             <Link to={`/oneRecord/${record._id}`}>{record.albumName}</Link>
                             <div><Link to={`/oneArtist/${record.artist}`}>{record.artist}</Link></div>
                             <div><Link to={`/oneGenre/${record.genre}`}>{record.genre}</Link></div>
-                            <p>{record.rating} out of 5</p>
+                            <div><Link to={`/oneYear/${record.releaseYear}`}>{record.releaseYear}</Link></div>
                         </div>
                     </div>
             )

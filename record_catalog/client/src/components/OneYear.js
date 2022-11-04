@@ -20,7 +20,7 @@ const OneYear = () => {
         })
     }, [])
     return (
-        <div className='bg-dark text-primary' style={{height:"100%"}}>
+        <div className='bg-dark text-primary' style={{height:"100vh"}}>
             <h1>All Records From {releaseYear}</h1>
             {list.map((record, index)=>{
                 list.sort()

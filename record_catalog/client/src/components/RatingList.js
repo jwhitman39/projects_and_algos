@@ -25,7 +25,7 @@ const RatingList = (props) => {
             })
     }, [])
     return (
-        <div className="p-3 mb-2 bg-dark text-white" style={{height:"100%"}}>
+        <div className="p-3 mb-2 bg-dark text-white" style={{height:"100vh"}}>
             <h1 className="text-warning">Rating List</h1>
             <div className="d-flex flex-wrap">              
                 {

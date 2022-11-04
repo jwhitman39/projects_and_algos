@@ -24,6 +24,7 @@ function App() {
       {/* <Stat/> */}
       {/* <CoverFlow/> */}
       <NavBar />
+      {/* <Vinyl /> */}
         <Routes>
           <Route path="/" element={<RecordForm  />} />
           <Route path="/recordList" element={<RecordList record={record} setRecord={setRecord} />} />
