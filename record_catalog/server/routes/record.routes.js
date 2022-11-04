@@ -10,8 +10,10 @@ module.exports = (app) => {
     app.get('/api/allReleaseYears', RecordController.getAllRecords);
     // get all Artists
     app.get('/api/allArtists', RecordController.getAllRecords);
-    // get all Artists
+    // get all Genres
     app.get('/api/allGenres', RecordController.getAllRecords);
+    // get all Ratings
+    app.get('/api/allRatings', RecordController.getAllRecords);
     // get one Record
     app.get('/api/oneRecord/:id', RecordController.getOneRecord)
     // get one Artist
@@ -20,6 +22,8 @@ module.exports = (app) => {
     app.get('/api/oneGenre/:genre', RecordController.getOneGenre)
     // get one Release Year
     app.get('/api/oneYear/:releaseYear', RecordController.getOneYear)
+    // get one Rating
+    app.get('/api/oneRating/:rating', RecordController.getOneRating)
     // create Record
     app.post('/api/addRecord', RecordController.addRecord);
     // update Record

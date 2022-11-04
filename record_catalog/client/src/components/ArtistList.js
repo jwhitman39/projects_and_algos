@@ -13,12 +13,20 @@ const ArtistList = (props) => {
         axios.get('http://localhost:8000/api/allArtists')
         .then((res)=>{
             console.log(res);
-            setList(res.data);
-            // if (setList(res.data) !==null){
-            //         const unique = [...new Map(list.map((m) => [m.artist, m])).values()]
-            //         console.log(unique, "these are unique")
-            //         setList(unique)}
-            })
+            // filter list of artists
+            const uniqueArtists = []
+            const unique = res.data.filter(element => {
+                const isDuplicate = uniqueArtists.includes(element.artist);
+                if (!isDuplicate) {
+                    uniqueArtists.push(element.artist);
+                    return true;
+                }
+                return false;
+            });
+            setList(unique);
+            const sortedList = unique.sort((a, b) => a.artist.localeCompare(b.artist))
+            setList(sortedList)
+        })
         .catch((err)=>{
             console.log(err);
         })

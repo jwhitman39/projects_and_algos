@@ -13,7 +13,17 @@ const GenreList = (props) => {
         axios.get('http://localhost:8000/api/allGenres')
         .then((res)=>{
             console.log(res);
-            setList(res.data);
+            // filter list of genres
+            const uniqueGenres = []
+            const unique = res.data.filter(element => {
+                const isDuplicate = uniqueGenres.includes(element.genre);
+                if (!isDuplicate) {
+                uniqueGenres.push(element.genre);
+                return true;
+                }
+                return false;
+            });
+            setList(unique);
         })
         .catch((err)=>{
             console.log(err);

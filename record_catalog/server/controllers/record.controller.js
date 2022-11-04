@@ -15,7 +15,7 @@ module.exports= {
         })
     },
     getAllReleaseYears: (req, res) =>{
-        Record.find({"releaseYear" : req.params.releaseYear})
+        Record.find()
         .then((result)=>{
             res.json(result)
         })
@@ -67,6 +67,16 @@ module.exports= {
     },
     getOneYear: (req, res) =>{
         Record.find({"releaseYear" : req.params.releaseYear})
+        .then((result)=>{
+            res.json(result)
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
+    getOneRating: (req, res) =>{
+        Record.find({"rating" : req.params.rating})
         .then((result)=>{
             res.json(result)
         })
