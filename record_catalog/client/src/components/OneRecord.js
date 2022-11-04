@@ -31,10 +31,10 @@ const OneRecord = () => {
         <div className='bg-dark text-primary' style={{height:"100%"}}>
             <h1>{record.albumName} </h1>
             <img src={record.albumArt}></img>
-            <h2>{record.artist}</h2>
-            <p>Genre: {record.genre}</p>
-            <p>Release Year: {record.releaseYear}</p>
-            <p>Rating: {record.rating} out of 5</p>
+            <h2><Link to={`/oneArtist/${record.artist}`}>{record.artist}</Link></h2>
+            <p>Genre: <Link to={`/oneGenre/${record.genre}`}>{record.genre}</Link></p>
+            <p>Release Year: <Link to={`/oneYear/${record.releaseYear}`}>{record.releaseYear}</Link></p>
+            <p>Rating: <Link to={`/oneRating/${record.rating}`}>{record.rating}</Link> out of 5</p>
             <p>Play Count: {record.playCount} </p>
             <button className='btn btn-warning'><Link to={`/edit/${record._id}`}>Edit Record</Link></button>
             <button onClick={(e)=>deleteHandler(record._id)} className='btn btn-danger'>Delete Record!</button>

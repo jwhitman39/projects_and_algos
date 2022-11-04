@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.2.2",
+    "react-fade-in": "^2.0.1",
+    "react-loading": "^2.0.3",
+    "react-lottie": "^1.2.3"
+  }
+}

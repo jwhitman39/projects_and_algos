@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
     return (
-        <div className="bg-warning bg-gradient col-12 no-gutter fluid" style={{backgroundImage: "url('https://images.unsplash.com/photo-1588532218970-c2cab983746a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80')"}}>
+        <div className="bg-warning bg-gradient col-12 no-gutter fluid" style={{backgroundImage: "url('https://images.unsplash.com/photo-1588532218970-c2cab983746a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80')", width: "100%"}}>
             <h1 className="text-primary">Jon's Record Catalog</h1>
             <div className="col-20">
             </div>

@@ -57,7 +57,7 @@ const randomRecord = (e) =>{
             })
         }
     return (
-        <div className="p-3 mb-2 bg-dark text-white" style={{height:"300%", width:"200vh"}}>
+        <div className="p-3 mb-2 bg-dark text-white" style={{height:"300%", width:"100%"}}>
             <h1 className="text-warning">Record List</h1>
             { activeRecord ? 
                 <div className="col col-4 mx-auto">
@@ -70,18 +70,18 @@ const randomRecord = (e) =>{
                     { activeRecord ? 
                         <div className="col col-4 mx-auto" >
                             <div><label className='form-label'>Play Count: {activeRecord.playCount}</label></div>
-                            <button className="btn btn-success btn-lg"  onClick={playRecord}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
-                                    <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
-                                </svg>
-                                <span className="glyphicon glyphicon-play"></span>
+                            <button className="btn btn-success btn-lg rounded-circle" onClick={playRecord}>
+                                    <i class="fa-solid fa-circle-play"></i> 
                             </button>
                         </div>
                     :null}
                     </div>
                 </div>
             :null }
-            <button className="btn btn-info text-white" onClick={randomRecord} >Pick a Random Record!</button>
+            <button className="btn btn-info text-white" onClick={randomRecord}>
+                Pick a Random Record! <i className="fa-solid fa-record-vinyl"></i>
+                <div></div>
+            </button>
             <div className="d-flex flex-wrap">              
                 {
                     list.map((record, index)=> {

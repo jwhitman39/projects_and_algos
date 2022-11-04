@@ -29,8 +29,8 @@ const OneGenre = () => {
                         <div className="col col-4 mt-3 mx-center">
                             <Link to={`/oneRecord/${record._id}`}>{record.albumName}</Link>
                             <div><Link to={`/oneArtist/${record.artist}`}>{record.artist}</Link></div>
-                            <p>{record.releaseYear}</p>
-                            <p>{record.rating} out of 5</p>
+                            <div><Link to={`/oneYear/${record.releaseYear}`}>{record.releaseYear}</Link></div>
+                            <div><Link to={`/oneRating/${record.rating}`}>{record.rating}</Link> out of 5</div>
                         </div>
                     </div>
             )

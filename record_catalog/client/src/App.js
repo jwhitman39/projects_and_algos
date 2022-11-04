@@ -13,6 +13,7 @@ import OneRating from './components/OneRating.js';
 import NavBar from "./components/NavBar";
 import EditForm from "./components/EditForm";
 import ReleaseYearList from './components/ReleaseYearList.js';
+import Banner from './components/Banner.js';
 import Vinyl from './components/Vinyl.js';
 import Stat from './components/Stat.js';
 import CoverFlow from './components/CoverFlow.js';
@@ -24,7 +25,8 @@ function App() {
       {/* <Stat/> */}
       {/* <CoverFlow/> */}
       <NavBar />
-      <Vinyl />
+      <Banner />
+      {/* <Vinyl /> */}
         <Routes>
           <Route path="/" element={<RecordForm  />} />
           <Route path="/recordList" element={<RecordList record={record} setRecord={setRecord} />} />
