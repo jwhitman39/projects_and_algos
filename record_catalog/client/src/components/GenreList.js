@@ -30,8 +30,8 @@ const GenreList = (props) => {
         })
     }, [])
     return (
-        <div className="p-3 mb-2 bg-dark text-white" style={{height:"100%"}}>
-            <h1 className="text-warning">Artist List</h1>
+        <div className="p-3 mb-2 bg-dark text-white" style={{height:"100vh"}}>
+            <h1 className="text-warning">Genre List</h1>
             {/* { activeRecord ? 
                 <div className="col col-4 mx-auto">
                     <img className="col-10" alt= "" src={list[activeRecord].albumArt}></img>
@@ -48,7 +48,7 @@ const GenreList = (props) => {
                 {
                     list.map((record, index)=> {
                         return(
-                            <div className="col col-6 mt-3 px-2" key={index}>
+                            <div className="col col-8 mt-3 px-2" key={index}>
                                 <Link to={`/oneGenre/${record.genre}`}>{record.genre}</Link>
                             </div>
                             )
