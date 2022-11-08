@@ -35,11 +35,13 @@ const RecordForm = (props) => {
         })
     }
     return (
-        <div className='bg-dark text-white' style={{height:"100vh"}}>
+        <div className='bg-dark text-white' style={{height:"100%"}}>
             <form className='col-6 mx-auto' onSubmit = {onSubmitHandler}>
                 <div>
                     <img src = {albumArt} />
+                    <div>
                     <label className='form-label'>Album Art:</label>
+                    </div>
                     <input value={albumArt} className='form-control' type="text" onChange= {(e) => setAlbumArt(e.target.value)}/>
                     { errors.albumArt ? <span className='text-danger'>{errors.albumArt.message}</span> :null }
                 </div>
