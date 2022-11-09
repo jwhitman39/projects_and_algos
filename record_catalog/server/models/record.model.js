@@ -67,6 +67,10 @@ const RecordSchema = new mongoose.Schema({
     playCount:{
         type: Number,
         required: [true, "This field is required!"],
+    },
+    position:{
+        type: Number,
+        required: [true, "This field is required!"]
     }
     // object gets id, created at, and updated at
 }, {timestamps: true});

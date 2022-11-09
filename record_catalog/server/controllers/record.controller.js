@@ -123,6 +123,20 @@ module.exports= {
             res.status(400).json(err)
         })
     },
+    changePosition: (req, res) =>{
+        console.log('++++++', req.body)
+        Record.findOneAndUpdate(
+            {_id: req.params.id},
+            req.body, 
+            {new: true})
+        .then((result)=>{
+            res.json(result)
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
     deleteRecord: (req, res) =>{
         Record.deleteOne({_id:req.params.id})
         .then((result)=>{

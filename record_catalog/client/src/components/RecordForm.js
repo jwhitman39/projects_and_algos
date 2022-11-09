@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const RecordForm = (props) => {
@@ -10,8 +10,20 @@ const RecordForm = (props) => {
     const [ genre, setGenre ] = useState('')
     const [ releaseYear, setReleaseYear ] = useState('')
     const [ playCount, setPlayCount ] = useState('')
+    const [ position, setPosition ] = useState('')
+    const [ list, setList ] = useState([])
     const [ errors, setErrors ] = useState({})
     const navigate = useNavigate()
+    useEffect(()=>{
+        axios.get('http://localhost:8000/api/allRecords')
+        .then((res)=>{
+            console.log(res)
+            setList(res.data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    })
     const onSubmitHandler = (e) => {
         e.preventDefault()
         axios.post('http://localhost:8000/api/addRecord',
@@ -22,7 +34,8 @@ const RecordForm = (props) => {
             rating,
             genre,
             releaseYear,
-            playCount
+            playCount, 
+            position
         })
         .then((res)=>{
             console.log(res); 
@@ -99,6 +112,19 @@ const RecordForm = (props) => {
                 <p>
                     <label className='form-label'>Play Count: {playCount}</label>
                     <input value={playCount} className='form-control' type="number" onChange={(e) => setPlayCount(e.target.value)}/>
+                    { errors.releaseYear ? <span className='text-danger'>{errors.releaseYear.message}</span> :null }
+                </p>
+                <p>
+                    <label className='form-label'>Position: </label>
+                    <select value={position} className='form-control' placeholder={list.length}  type="number" onChange={(e) => setPosition(e.target.value)}>
+                        <option value="" ></option>
+                        {list.map((record, index)=> {
+                            return(
+                                <option key={index} value={record.position}>{record.position}   {record.artist}, {record.albumName}, {record.releaseYear}</option>
+                            )
+                        })}
+                    </select>
+                    { errors.releaseYear ? <span className='text-danger'>{errors.releaseYear.message}</span> :null }
                 </p>
                 <input type="submit" className='btn btn-success' value="Add record"></input>
             </form>

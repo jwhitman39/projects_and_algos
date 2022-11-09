@@ -10,10 +10,22 @@ const EditForm = (props) => {
     const [ genre, setGenre ] = useState('')
     const [ releaseYear, setReleaseYear ] = useState('')
     const [ playCount, setPlayCount ] = useState('')
+    const [ position, setPosition ] = useState('')
     const [ errors, setErrors ] = useState({})
+    const [ list, setList ] = useState([])
     const {record, setRecord} = props
     const {id} = useParams()
     const navigate = useNavigate()
+    useEffect(()=>{
+        axios.get('http://localhost:8000/api/allRecords')
+        .then((res)=>{
+            console.log(res)
+            setList(res.data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    })
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/oneRecord/${id}`)
         .then((res)=>{
@@ -24,6 +36,7 @@ const EditForm = (props) => {
             setGenre(res.data.genre)
             setReleaseYear(res.data.releaseYear)
             setPlayCount(res.data.playCount)
+            setPosition(res.data.position)
         }).catch((err)=>{
             console.log(err)
         })
@@ -38,7 +51,8 @@ const EditForm = (props) => {
             rating,
             genre,
             releaseYear,
-            playCount
+            playCount,
+            position
         })
     .then((res)=>{
             navigate('/recordList')
@@ -110,6 +124,18 @@ const EditForm = (props) => {
                     <label className='form-label'>Play Count: {playCount}</label>
                     <input placeholder= "0" className='form-control' type="number" onChange= {(e) => setPlayCount(e.target.value)}/>
                     { errors.playCount ? <span className='text-danger'>{errors.playCount.message}</span> :null }
+                </p>
+                <p>
+                    <label className='form-label'>Position: </label>
+                    <select value={position} className='form-control' placeholder={list.length}  type="number" onChange={(e) => setPosition(e.target.value)}>
+                        <option value="" ></option>
+                        {list.map((record, index)=> {
+                            return(
+                                <option key={index} value={record.position}>{record.position}   {record.artist}, {record.albumName}, {record.releaseYear}</option>
+                            )
+                        })}
+                    </select>
+                    { errors.releaseYear ? <span className='text-danger'>{errors.releaseYear.message}</span> :null }
                 </p>
                 <input type="submit" className='btn btn-success' value="Update record"></input>
             </form>
