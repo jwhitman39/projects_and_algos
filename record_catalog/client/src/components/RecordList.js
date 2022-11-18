@@ -43,7 +43,7 @@ const RecordList = (props) => {
                 // check for missing gaps
                 if(sortedList[i].position - sortedList[i+1].position != -1){
                     // set records ahead of position to -1
-                    sortedList[i+1].position -= 1
+                    sortedList[i+1].position = sortedList[i].position+1
                     // update records ahead to new position
                     axios.put(`http://localhost:8000/api/changePosition/${sortedList[i+1]._id}`, {
                         position: sortedList[i+1].position
@@ -55,15 +55,15 @@ const RecordList = (props) => {
                         position: 1
                     })
                     axios.put(`http://localhost:8000/api/changePosition/${sortedList[i+1]._id}`, {
-                        position: sortedList[i+1].position
+                        position: sortedList[i+1].position +1
                     })
                 }
-                // // ensure records increment by 1
-                // if(sortedList[i].position - sortedList[i+1].position!= -1){
-                //     axios.put(`http://localhost:8000/api/changePosition/${sortedList[i+1]._id}`, {
-                //         position: sortedList[i].position+=1
-                //     })
-                // }
+                // ensure records increment by 1
+                if(sortedList[i].position - sortedList[i+1].position!= -1){
+                    axios.put(`http://localhost:8000/api/changePosition/${sortedList[i+1]._id}`, {
+                        position: sortedList[i+1].position+=1
+                    })
+                }
             }
         })
         .catch((err)=>{
@@ -96,38 +96,6 @@ const RecordList = (props) => {
             console.log("playcount should be edited...")
                 // setRecord({...record, record:res.data})
             })
-        .catch((err)=>{
-            console.log(err)
-        })
-    }
-    const increasePosition = (e) => {
-        axios.get(`http://localhost:8000/api/oneRecord/${record._id}`)
-        console.log(record.albumName, "is going up")
-        const positionUp = position-1
-        .then((res)=>{
-            setRecord(res.data)
-            axios.put(`http://localhost:8000/api/updateRecord/${record._id}`, {
-                position: positionUp
-            })
-            setPosition(record.position)
-            setRecord(res.data)
-            console.log(res)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-    }
-    const decreasePosition = (e) => {
-        e.preventDefault()
-        const positionDown = record.position+1
-        axios.put(`http://localhost:8000/api/updateRecord/${record._id}`, {
-            position: positionDown
-        })
-        .then((res)=>{
-            setPosition(record.position)
-            setRecord(res.data)
-            console.log(res)
-        })
         .catch((err)=>{
             console.log(err)
         })

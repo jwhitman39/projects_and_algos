@@ -143,10 +143,11 @@ const EditForm = (props) => {
                         {sortedList.map((record, index)=> {
                             return(
                                 <option key={index} value={record.position}>{record.position}   {record.artist}, {record.albumName}, {record.releaseYear}</option>
-                            )
-                        })}
+                                )
+                            })}
                     </select>
                     { errors.position ? <span className='text-danger'>{errors.position.message}</span> :null }
+                    <p>Note: Select the record that is AFTER this one!</p>
                 </p>
                 <input type="submit" className='btn btn-success' value="Update record"></input>
             </form>
