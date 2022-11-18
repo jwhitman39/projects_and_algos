@@ -12,6 +12,7 @@ const RecordForm = (props) => {
     const [ playCount, setPlayCount ] = useState('')
     const [ position, setPosition ] = useState('')
     const [ list, setList ] = useState([])
+    const [ sortedList, setSortedList] = useState([])
     const [ errors, setErrors ] = useState({})
     const navigate = useNavigate()
     useEffect(()=>{
@@ -19,6 +20,10 @@ const RecordForm = (props) => {
         .then((res)=>{
             console.log(res)
             setList(res.data)
+            // create sorted list variable
+            setSortedList(res.data.sort((a,b) => a.position - b.position))
+            // set list to sortedList
+            setList(sortedList)
         })
         .catch((err)=>{
             console.log(err)
@@ -118,13 +123,14 @@ const RecordForm = (props) => {
                     <label className='form-label'>Position: </label>
                     <select value={position} className='form-control' placeholder={list.length}  type="number" onChange={(e) => setPosition(e.target.value)}>
                         <option value="" ></option>
-                        {list.map((record, index)=> {
+                        <option value="0">At Beginning</option>
+                        {sortedList.map((record, index)=> {
                             return(
                                 <option key={index} value={record.position}>{record.position}   {record.artist}, {record.albumName}, {record.releaseYear}</option>
                             )
                         })}
                     </select>
-                    { errors.releaseYear ? <span className='text-danger'>{errors.releaseYear.message}</span> :null }
+                    { errors.position ? <span className='text-danger'>{errors.position.message}</span> :null }
                 </p>
                 <input type="submit" className='btn btn-success' value="Add record"></input>
             </form>

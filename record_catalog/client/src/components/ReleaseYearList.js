@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const ReleaseYearList = (props) => {
-
         const [list, setList ] = useState([])
         useEffect(() =>{
             axios.get('http://localhost:8000/api/allReleaseYears')

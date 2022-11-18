@@ -13,6 +13,7 @@ const EditForm = (props) => {
     const [ position, setPosition ] = useState('')
     const [ errors, setErrors ] = useState({})
     const [ list, setList ] = useState([])
+    const [ sortedList, setSortedList ] = useState([])
     const {record, setRecord} = props
     const {id} = useParams()
     const navigate = useNavigate()
@@ -21,7 +22,17 @@ const EditForm = (props) => {
         .then((res)=>{
             console.log(res)
             setList(res.data)
-        })
+            // create sorted list variable
+            setSortedList(res.data.sort((a,b) => a.position - b.position))
+            // set list to sortedList
+            setList(sortedList)
+            for( let i = 0; i < sortedList.length; i++ ){
+                // check for duplicate positions
+                if(sortedList[i].position === sortedList[i+1].position ){
+                    // set records ahead of position to +1
+                    sortedList[i+1].position += 1
+                }
+            }})
         .catch((err)=>{
             console.log(err)
         })
@@ -129,13 +140,13 @@ const EditForm = (props) => {
                     <label className='form-label'>Position: </label>
                     <select value={position} className='form-control' placeholder={list.length}  type="number" onChange={(e) => setPosition(e.target.value)}>
                         <option value="" ></option>
-                        {list.map((record, index)=> {
+                        {sortedList.map((record, index)=> {
                             return(
                                 <option key={index} value={record.position}>{record.position}   {record.artist}, {record.albumName}, {record.releaseYear}</option>
                             )
                         })}
                     </select>
-                    { errors.releaseYear ? <span className='text-danger'>{errors.releaseYear.message}</span> :null }
+                    { errors.position ? <span className='text-danger'>{errors.position.message}</span> :null }
                 </p>
                 <input type="submit" className='btn btn-success' value="Update record"></input>
             </form>

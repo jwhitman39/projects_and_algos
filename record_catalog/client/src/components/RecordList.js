@@ -32,7 +32,7 @@ const RecordList = (props) => {
             // loop through list
             for( let i = 0; i < sortedList.length; i++ ){
                 // check for duplicate positions
-                if(sortedList[i].position == sortedList[i+1].position ){
+                if(sortedList[i].position === sortedList[i+1].position ){
                     // set records ahead of position to +1
                     sortedList[i+1].position += 1
                     // update records ahead to new position
@@ -41,7 +41,7 @@ const RecordList = (props) => {
                     })
                 }
                 // check for missing gaps
-                if(sortedList[i].position - sortedList[i+1].position == -2){
+                if(sortedList[i].position - sortedList[i+1].position != -1){
                     // set records ahead of position to -1
                     sortedList[i+1].position -= 1
                     // update records ahead to new position
@@ -49,6 +49,21 @@ const RecordList = (props) => {
                         position: sortedList[i+1].position
                     })
                 }
+                // ensure records start at 1
+                if(sortedList[0].position != 1){
+                    axios.put(`http://localhost:8000/api/changePosition/${sortedList[0]._id}`, {
+                        position: 1
+                    })
+                    axios.put(`http://localhost:8000/api/changePosition/${sortedList[i+1]._id}`, {
+                        position: sortedList[i+1].position
+                    })
+                }
+                // // ensure records increment by 1
+                // if(sortedList[i].position - sortedList[i+1].position!= -1){
+                //     axios.put(`http://localhost:8000/api/changePosition/${sortedList[i+1]._id}`, {
+                //         position: sortedList[i].position+=1
+                //     })
+                // }
             }
         })
         .catch((err)=>{
@@ -85,44 +100,45 @@ const RecordList = (props) => {
             console.log(err)
         })
     }
-    // const increasePosition(id) = {
-    //     axios.get(`http://localhost:8000/api/oneRecord/${record._id}`)
-    //     console.log(record.albumName, "is going up")
-    //     const positionUp = position-1
-    //     .then((res)=>{
-    //         setRecord(res.data)
-    //         axios.put(`http://localhost:8000/api/updateRecord/${record._id}`, {
-    //             position: positionUp
-    //         })
-    //         setPosition(record.position)
-    //         setRecord(res.data)
-    //         console.log(res)
-    //     })
-    //     .catch((err)=>{
-    //         console.log(err)
-    //     })
-    // }
-    // const decreasePosition = (e) => {
-    //     e.preventDefault()
-    //     const positionDown = record.position+1
-    //     axios.put(`http://localhost:8000/api/updateRecord/${record._id}`, {
-    //         position: positionDown
-    //     })
-    //     .then((res)=>{
-    //         setPosition(record.position)
-    //         setRecord(res.data)
-    //         console.log(res)
-    //     })
-    //     .catch((err)=>{
-    //         console.log(err)
-    //     })
-    // }
+    const increasePosition = (e) => {
+        axios.get(`http://localhost:8000/api/oneRecord/${record._id}`)
+        console.log(record.albumName, "is going up")
+        const positionUp = position-1
+        .then((res)=>{
+            setRecord(res.data)
+            axios.put(`http://localhost:8000/api/updateRecord/${record._id}`, {
+                position: positionUp
+            })
+            setPosition(record.position)
+            setRecord(res.data)
+            console.log(res)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+    const decreasePosition = (e) => {
+        e.preventDefault()
+        const positionDown = record.position+1
+        axios.put(`http://localhost:8000/api/updateRecord/${record._id}`, {
+            position: positionDown
+        })
+        .then((res)=>{
+            setPosition(record.position)
+            setRecord(res.data)
+            console.log(res)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
     return (
         <div className="p-3 mb-2 bg-dark text-white" style={{height:"300%", width:"100%"}}>
             <h1 className="text-warning">Record List</h1>
             { activeRecord ? 
                 <div className="col col-4 mx-auto">
                     <img className="col-10" alt= "" src={activeRecord.albumArt}></img>
+                    <p style={{fontSize:"10px"}} >#{activeRecord.position}</p>
                     <div className="my-4">
                         <Link to={`/oneRecord/${activeRecord._id}`}>{activeRecord.albumName}</Link>
                         <div>
@@ -149,11 +165,11 @@ const RecordList = (props) => {
                         return(
                             <div className="col col-6 mt-3 px-2" key={index}>
                                 <img src={record.albumArt} alt="" className="col-4"></img>
-                                <div>
-                                    {/* <button onClick={increasePosition} >
+                                {/* <div>
+                                    <button onClick={increasePosition} >
                                         <i class="fa-solid fa-arrow-up"></i>
-                                    </button> */}
-                                </div>
+                                    </button>
+                                </div> */}
                                     <p style={{fontSize:"10px"}} >#{record.position}</p>
                                     {/* <button onClick={decreasePosition}>
                                         <i class="fa-solid fa-arrow-down"></i>
