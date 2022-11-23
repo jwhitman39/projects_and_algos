@@ -11,6 +11,7 @@ const EditForm = (props) => {
     const [ releaseYear, setReleaseYear ] = useState('')
     const [ playCount, setPlayCount ] = useState('')
     const [ position, setPosition ] = useState('')
+    const [ tag1, setTag1 ] = useState('')
     const [ errors, setErrors ] = useState({})
     const [ list, setList ] = useState([])
     const [ sortedList, setSortedList ] = useState([])
@@ -36,7 +37,7 @@ const EditForm = (props) => {
         .catch((err)=>{
             console.log(err)
         })
-    })
+    }, [])
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/oneRecord/${id}`)
         .then((res)=>{
@@ -48,6 +49,7 @@ const EditForm = (props) => {
             setReleaseYear(res.data.releaseYear)
             setPlayCount(res.data.playCount)
             setPosition(res.data.position)
+            setTag1(res.data.tag1)
         }).catch((err)=>{
             console.log(err)
         })
@@ -63,7 +65,8 @@ const EditForm = (props) => {
             genre,
             releaseYear,
             playCount,
-            position
+            position,
+            tag1,
         })
     .then((res)=>{
             navigate('/recordList')
@@ -74,7 +77,7 @@ const EditForm = (props) => {
         })
     }
     return (
-        <div className='bg-dark text-white' style={{height:"100vh"}}>
+        <div className='bg-dark text-white' style={{height:"100%"}}>
             <form className='col-6 mx-auto' onSubmit = {updateHandler}>
                 <p>
                     <label className='form-label'>Album Art:</label>
@@ -148,6 +151,17 @@ const EditForm = (props) => {
                     </select>
                     { errors.position ? <span className='text-danger'>{errors.position.message}</span> :null }
                     <p>Note: Select the record that is AFTER this one!</p>
+                    <p>
+                    <label className='form-label'>Tag 1: </label>
+                    <select value={tag1} className='form-control' type="string" onChange={(e) => setTag1(e.target.value)}>
+                        <option value=""></option>
+                        <option value="Chill">Chill</option>
+                        <option value="Upbeat">Upbeat</option>
+                        <option value="Rock Out">Rock Out</option>
+                        <option value="Movie Time!">Movie Time!</option>
+                    </select>
+                    { errors.position ? <span className='text-danger'>{errors.tag1.message}</span> :null }
+                </p>
                 </p>
                 <input type="submit" className='btn btn-success' value="Update record"></input>
             </form>

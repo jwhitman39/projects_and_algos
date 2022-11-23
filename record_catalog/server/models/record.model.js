@@ -58,19 +58,29 @@ const RecordSchema = new mongoose.Schema({
             'Pop',
             'Country'
         ],
-        required: [true, "This field is required!"],
+        required: [true, "Genre is required!"],
     },
     releaseYear: {
         type: Number,
-        required: [true, "This field is required!"]
+        required: [true, "Release year is required!"]
     },
     playCount:{
         type: Number,
-        required: [true, "This field is required!"],
+        required: [true, "Play count is required!"],
     },
     position:{
         type: Number,
-        required: [true, "This field is required!"]
+        required: [true, "A position is required!"]
+    },
+    tag1:{  
+        type: String,
+        enum: [
+            'Chill',
+            'Upbeat',
+            'Rock Out',
+            'Movie Time!'
+        ],
+        required: [true, "A tag is required!"]
     }
     // object gets id, created at, and updated at
 }, {timestamps: true});

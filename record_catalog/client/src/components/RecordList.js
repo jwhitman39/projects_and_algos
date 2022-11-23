@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios, { Axios } from "axios";
 import { Link } from "react-router-dom";
 import { useParams, useNavigate } from 'react-router-dom'
 
@@ -15,8 +15,11 @@ const RecordList = (props) => {
     const [ position, setPosition ] = useState('')
     const [ playCount, setPlayCount ] = useState('')
     const [list, setList ] = useState([])
+    const [chillList, setChillList ] = useState([])
+    const [upbeatList, setUpbeatList ] = useState([])
+    const [rockOutList, setRockOutList ] = useState([])
+    const [movieTimeList, setMovieTimeList ] = useState([])
     // const {id} = useParams()
-
     useEffect(() =>{
         // get all records
         axios.get('http://localhost:8000/api/allRecords')
@@ -70,6 +73,42 @@ const RecordList = (props) => {
             console.log(err);
         })
     }, [])
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/allChills')
+        .then((res) =>{
+            // log results
+            console.log(res);
+            // set list to the results
+            setChillList(res.data);
+        })
+    }, [])
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/allUpbeats')
+        .then((res) =>{
+            // log results
+            console.log(res);
+            // set list to the results
+            setUpbeatList(res.data);
+        })
+    }, [])
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/allRockOuts')
+        .then((res) =>{
+            // log results
+            console.log(res);
+            // set list to the results
+            setRockOutList(res.data);
+        })
+    }, [])
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/allMovieTimes')
+        .then((res) =>{
+            // log results
+            console.log(res);
+            // set list to the results
+            setMovieTimeList(res.data);
+        })
+    }, [])
     const randomRecord = (e) =>{
         const len = list.length
         const newRecord = list[Math.floor(Math.random() * len)]
@@ -80,6 +119,50 @@ const RecordList = (props) => {
         }).catch((err)=>{
             console.log(err)
         })}
+    const randomChillRecord = (e) =>{
+        const len = chillList.length
+        const newChillRecord = chillList[Math.floor(Math.random() * len)]
+        console.log(newChillRecord)
+        axios.get(`http://localhost:8000/api/oneRecord/${newChillRecord._id}`)
+        .then((res)=>{
+            setActiveRecord(res.data)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+    const randomUpbeatRecord = (e) =>{
+        const len = upbeatList.length
+        const newUpbeatRecord = upbeatList[Math.floor(Math.random() * len)]
+        console.log(newUpbeatRecord)
+        axios.get(`http://localhost:8000/api/oneRecord/${newUpbeatRecord._id}`)
+        .then((res)=>{
+            setActiveRecord(res.data)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+    const randomRockOutRecord = (e) =>{
+        const len = rockOutList.length
+        const newRockOutRecord = rockOutList[Math.floor(Math.random() * len)]
+        console.log(newRockOutRecord)
+        axios.get(`http://localhost:8000/api/oneRecord/${newRockOutRecord._id}`)
+        .then((res)=>{
+            setActiveRecord(res.data)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+    const randomMovieTimeRecord = (e) =>{
+        const len = movieTimeList.length
+        const newMovieTimeRecord = movieTimeList[Math.floor(Math.random() * len)]
+        console.log(newMovieTimeRecord)
+        axios.get(`http://localhost:8000/api/oneRecord/${newMovieTimeRecord._id}`)
+        .then((res)=>{
+            setActiveRecord(res.data)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
     const playRecord = (e) => {
         e.preventDefault()
         console.log(activeRecord.playCount)
@@ -103,6 +186,12 @@ const RecordList = (props) => {
     return (
         <div className="p-3 mb-2 bg-dark text-white" style={{height:"300%", width:"100%"}}>
             <h1 className="text-warning">Record List</h1>
+            {/* <p>{list.length} total records</p>
+            <p>{chillList.length} chill records</p>
+            <p>{upbeatList.length} upbeat records</p>
+            <p>{rockOutList.length} rock out records</p>
+            <p>{movieTimeList.length} movie time records</p>
+            <p>{chillList.length + upbeatList.length + rockOutList.length + movieTimeList.length}</p> */}
             { activeRecord ? 
                 <div className="col col-4 mx-auto">
                     <img className="col-10" alt= "" src={activeRecord.albumArt}></img>
@@ -112,20 +201,31 @@ const RecordList = (props) => {
                         <div>
                             <Link to={`/oneArtist/${activeRecord.artist}`}>{activeRecord.artist}</Link>
                         </div>
-                    { activeRecord ? 
+                    { activeRecord ?
                         <div className="col col-4 mx-auto" >
                             <div><label className='form-label'>Play Count: {activeRecord.playCount}</label></div>
                             <button className="btn btn-success btn-lg rounded-circle" onClick={playRecord}>
-                                    <i class="fa-solid fa-circle-play"></i> 
+                                <i class="fa-solid fa-circle-play"></i> 
                             </button>
                         </div>
-                    :null}
+                    :null }
                     </div>
                 </div>
             :null }
-            <button className="btn btn-info text-white" onClick={randomRecord}>
+            <button className="btn btn-primary text-white" onClick={randomRecord} style={{margin: "3%"}}>
                 Pick a Random Record! <i className="fa-solid fa-record-vinyl"></i>
-                <div></div>
+            </button>
+            <button className="btn btn-success text-white" onClick={randomChillRecord} style={{margin: "3%"}}>
+                Pick a Chill Record! <i className="fa-solid fa-record-vinyl"></i>
+            </button>
+            <button className="btn btn-info text-white" onClick={randomUpbeatRecord} style={{margin: "3%"}}>
+                Pick an Upbeat Record! <i className="fa-solid fa-record-vinyl"></i>
+            </button>
+            <button className="btn btn-danger text-white" onClick={randomRockOutRecord} style={{margin: "3%"}}>
+                Pick a Rock Record! <i className="fa-solid fa-record-vinyl"></i>
+            </button>
+            <button className="btn btn-warning text-white" onClick={randomMovieTimeRecord} style={{margin: "3%"}}>
+                Pick a Movie Record! <i className="fa-solid fa-record-vinyl"></i>
             </button>
             <div className="d-flex flex-wrap">              
                 {

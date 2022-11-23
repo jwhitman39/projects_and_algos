@@ -6,6 +6,14 @@ module.exports = (app) => {
     // app.get('/api', RecordController.index);
     // get all Records
     app.get('/api/allRecords', RecordController.getAllRecords);
+    // get all Records
+    app.get('/api/allChills', RecordController.getAllChills);
+    // get all Records
+    app.get('/api/allUpbeats', RecordController.getAllUpbeats);
+    // get all Records
+    app.get('/api/allRockOuts', RecordController.getAllRockOuts);
+    // get all Records
+    app.get('/api/allMovieTimes', RecordController.getAllMovieTimes);
     // get all Release Years
     app.get('/api/allReleaseYears', RecordController.getAllRecords);
     // get all Artists

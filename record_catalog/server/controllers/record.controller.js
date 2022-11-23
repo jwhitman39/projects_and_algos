@@ -14,6 +14,46 @@ module.exports= {
             res.status(400).json(err)
         })
     },
+    getAllChills: (req, res) =>{
+        Record.find({"tag1" : "Chill"}, {"tag2" : "Chill"})
+        .then((result)=>{
+            res.json(result)
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
+    getAllUpbeats: (req, res) =>{
+        Record.find({"tag1" : "Upbeat"}, {"tag2" : "Upbeat"})
+        .then((result)=>{
+            res.json(result)
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
+    getAllRockOuts: (req, res) =>{
+        Record.find({"tag1" : "Rock Out"}, {"tag2" : "Rock Out"})
+        .then((result)=>{
+            res.json(result)
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
+    getAllMovieTimes: (req, res) =>{
+        Record.find({"tag1" : "Movie Time!"}, {"tag2" : "Movie Time!"})
+        .then((result)=>{
+            res.json(result)
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
     getAllReleaseYears: (req, res) =>{
         Record.find()
         .then((result)=>{

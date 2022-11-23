@@ -11,6 +11,8 @@ const RecordForm = (props) => {
     const [ releaseYear, setReleaseYear ] = useState('')
     const [ playCount, setPlayCount ] = useState('')
     const [ position, setPosition ] = useState('')
+    const [ tag1, setTag1 ] = useState('')
+    const [ tag2, setTag2 ] = useState('')
     const [ list, setList ] = useState([])
     const [ sortedList, setSortedList] = useState([])
     const [ errors, setErrors ] = useState({})
@@ -40,7 +42,8 @@ const RecordForm = (props) => {
             genre,
             releaseYear,
             playCount, 
-            position
+            position,
+            tag1,
         })
         .then((res)=>{
             console.log(res); 
@@ -131,6 +134,17 @@ const RecordForm = (props) => {
                         })}
                     </select>
                     { errors.position ? <span className='text-danger'>{errors.position.message}</span> :null }
+                </p>
+                <p>
+                    <label className='form-label'>Tag 1: </label>
+                    <select value={tag1} className='form-control' type="string" onChange={(e) => setTag1(e.target.value)}>
+                        <option value=""></option>
+                        <option value="Chill">Chill</option>
+                        <option value="Upbeat">Upbeat</option>
+                        <option value="Rock Out">Rock Out</option>
+                        <option value="Movie Time!">Movie Time!</option>
+                    </select>
+                    { errors.position ? <span className='text-danger'>{errors.tag1.message}</span> :null }
                 </p>
                 <input type="submit" className='btn btn-success' value="Add record"></input>
             </form>
