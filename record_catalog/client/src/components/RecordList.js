@@ -198,9 +198,10 @@ const RecordList = (props) => {
                     <p style={{fontSize:"10px"}} >#{activeRecord.position}</p>
                     <div className="my-4">
                         <Link to={`/oneRecord/${activeRecord._id}`}>{activeRecord.albumName}</Link>
-                        <div>
-                            <Link to={`/oneArtist/${activeRecord.artist}`}>{activeRecord.artist}</Link>
-                        </div>
+                        <div><Link to={`/oneArtist/${activeRecord.artist}`}>{activeRecord.artist}</Link></div>
+                        <div><Link to={`/oneGenre/${activeRecord.genre}`}>{activeRecord.genre}</Link></div>
+                        <div><Link to={`/oneYear/${activeRecord.releaseYear}`}>{activeRecord.releaseYear}</Link></div>
+                        <div><Link to={`/oneTag/${activeRecord.tag1}`}>{activeRecord.tag1}</Link></div>
                     { activeRecord ?
                         <div className="col col-4 mx-auto" >
                             <div><label className='form-label'>Play Count: {activeRecord.playCount}</label></div>
@@ -248,6 +249,7 @@ const RecordList = (props) => {
                                     <div><Link to={`/oneArtist/${record.artist}`}>{record.artist}</Link></div>
                                     <div><Link to={`/oneGenre/${record.genre}`}>{record.genre}</Link></div>
                                     <div><Link to={`/oneYear/${record.releaseYear}`}>{record.releaseYear}</Link></div>
+                                    <div><Link to={`/oneTag/${record.tag1}`}>{record.tag1}</Link></div>
                                 </div>
                             </div>
                             )

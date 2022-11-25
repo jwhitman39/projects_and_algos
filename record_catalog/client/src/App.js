@@ -10,6 +10,7 @@ import OneArtist from './components/OneArtist.js';
 import OneGenre from './components/OneGenre';
 import OneYear from './components/OneYear.js';
 import OneRating from './components/OneRating.js';
+import OneTag from './components/OneTag.js';
 import NavBar from "./components/NavBar";
 import EditForm from "./components/EditForm";
 import ReleaseYearList from './components/ReleaseYearList.js';
@@ -39,6 +40,7 @@ function App() {
           <Route path="/oneGenre/:genre" element={<OneGenre />} />
           <Route path="/oneYear/:releaseYear" element={<OneYear />} />
           <Route path="/oneRating/:rating" element={<OneRating />} />
+          <Route path="/oneTag/:tag1" element={<OneTag />} />
           <Route path="/edit/:id" element={<EditForm record={record} setRecord={setRecord} />} />
         </Routes>
       </BrowserRouter>

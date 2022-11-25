@@ -125,6 +125,16 @@ module.exports= {
             res.status(400).json(err)
         })
     },
+    getOneTag: (req, res) =>{
+        Record.find({"tag1" : req.params.tag1})
+        .then((result)=>{
+            res.json(result)
+        })
+        .catch((err)=> {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    },
     addRecord: (req, res) =>{
         Record.create(req.body)
         .then((result)=>{

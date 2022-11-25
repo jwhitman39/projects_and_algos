@@ -32,6 +32,8 @@ module.exports = (app) => {
     app.get('/api/oneYear/:releaseYear', RecordController.getOneYear)
     // get one Rating
     app.get('/api/oneRating/:rating', RecordController.getOneRating)
+    // get one Tag
+    app.get('/api/oneTag/:tag1', RecordController.getOneTag)
     // create Record
     app.post('/api/addRecord', RecordController.addRecord);
     // update Record
