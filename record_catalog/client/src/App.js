@@ -23,10 +23,10 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      {/* <Stat/> */}
       {/* <CoverFlow/> */}
       <NavBar />
       <Banner />
+      <Stat/>
       {/* <Vinyl /> */}
         <Routes>
           <Route path="/" element={<RecordForm  />} />

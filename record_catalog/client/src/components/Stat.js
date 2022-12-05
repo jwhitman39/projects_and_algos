@@ -1,193 +1,180 @@
-import React from 'react'
-import { ReactDOM } from 'react';
-import { Component } from 'react';
-import * as V from 'victory';
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect }  from 'react'
 import axios from 'axios';
-import CanvasJS from '../canvasjs.react'
+import { Pie } from "@visx/shape"
+import { Group } from "@visx/group"
+import { Text } from "@visx/text"
 
-
-
-const Stat = () => {
+const Stat  = (props) => {
+    const width = 400
+    const half = width / 2
+    const [active, setActive] = useState(null);
     const [list, setList ] = useState([])
-    const [data, setData] = useState([])
-        useEffect(() =>{
-            axios.get('http://localhost:8000/api/allRecords')
-            .then((res)=>{
-                console.log(res);
-                setList(res.data);
-                let mainCounter = list.length
-                console.log(`Here's the count:${mainCounter}`)
-                const rockCount = list.filter(function(item){
-                    if (item.genre === 'Rock') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Rock count:${rockCount}`)
-                const bluesCount = list.filter(function(item){
-                    if (item.genre === 'Blues') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Blues count:${bluesCount}`)
-                const hipHopCount = list.filter(function(item){
-                    if (item.genre === 'Hip-Hop') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Hip-Hop count:${hipHopCount}`)
-                const funkCount = list.filter(function(item){
-                    if (item.genre === 'Funk') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Funk count:${funkCount}`)
-                const soundtrackCount = list.filter(function(item){
-                    if (item.genre === 'Soundtrack') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Soundtrack count:${soundtrackCount}`)
-                const discoCount = list.filter(function(item){
-                    if (item.genre === 'Disco') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Disco count:${discoCount}`)
-                const electronicCount = list.filter(function(item){
-                    if (item.genre === 'Electronic') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Electronic count:${electronicCount}`)
-                const rnbCount = list.filter(function(item){
-                    if (item.genre === 'RnB') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the RnB count:${rnbCount}`)
-                const soulCount = list.filter(function(item){
-                    if (item.genre === 'Soul') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Soul count:${soulCount}`)
-                const jazzCount = list.filter(function(item){
-                    if (item.genre === 'Jazz') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Jazz count:${jazzCount}`)
-                const metalCount = list.filter(function(item){
-                    if (item.genre === 'Metal') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Metal count:${metalCount}`)
-                const classicalCount = list.filter(function(item){
-                    if (item.genre === 'Classical') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Classical count:${classicalCount}`)
-                const popCount = list.filter(function(item){
-                    if (item.genre === 'Pop') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Pop count:${popCount}`)
-                const ambientCount = list.filter(function(item){
-                    if (item.genre === 'Ambient') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Ambient count:${ambientCount}`)
-                const easyListeningCount = list.filter(function(item){
-                    if (item.genre === 'Easy-Listening') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Easy-Listening count:${easyListeningCount}`)
-                const alternativeCount = list.filter(function(item){
-                    if (item.genre === 'Alternative') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Alternative count:${alternativeCount}`)
-                const countryCount = list.filter(function(item){
-                    if (item.genre === 'Country') {
-                    return true;
-                    } else {
-                    return false;
-                    }
-                }).length;
-                console.log(`Here's the Country count:${countryCount}`)
-                console.log(rockCount+bluesCount+hipHopCount+funkCount+soundtrackCount+discoCount+electronicCount+rnbCount+soulCount+jazzCount+metalCount+classicalCount+popCount+ambientCount+easyListeningCount+alternativeCount+countryCount)
-                // setData([{rockCount}, {bluesCount}, {hipHopCount}, {funkCount}, {soundtrackCount}, {discoCount}, {electronicCount}, {rnbCount}, {soulCount}, {jazzCount}, {metalCount}, {classicalCount}, {popCount}, {ambientCount}, {easyListeningCount}, {alternativeCount}, {countryCount}])
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
-        }, [])
-
-    return (
-        <div className='col col-3 mx-auto' style={{width:"50%", display: "flex", flexWrap: "wrap"}} >
-                <VictoryChart
-            // domainPadding will add space to each side of VictoryBar to
-            // prevent it from overlapping the axis
-            theme={VictoryTheme.material}
-            domainPadding={10}
-        >
-            <VictoryAxis
-            // tickValues specifies both the number of ticks and where
-            // they are placed on the axis
-            tickValues={[1, 2, 3, 4, 5]}
-            tickFormat={[data]}
-            />
-            <VictoryAxis
-            dependentAxis
-            // tickFormat specifies how ticks should be displayed
-            tickFormat={(y) => (`${y} out of 5`)}
-            />
-            <VictoryBar
-            data={list}
-            x="genre"
-            y="rating"
-            />
-        </VictoryChart>
+    const [genreList, setGenreList] = useState([])
+    console.log(active)
+    useEffect(() => {
+        // get all records
+        axios.get('http://localhost:8000/api/allRecords')
+        .then((res)=>{
+            // log results
+            console.log(res);
+            // set list to the results
+            setList(res.data);
+        })}, [])
+    useEffect(() =>{
+        axios.get('http://localhost:8000/api/allGenres')
+        .then((res)=>{
+            console.log(res);
+            // filter list of genres
+            const uniqueGenres = []
+            const unique = res.data.filter(element => {
+                const isDuplicate = uniqueGenres.includes(element.genre);
+                if (!isDuplicate) {
+                uniqueGenres.push(element.genre);
+                return true;
+                }
+                return false;
+            });
+            setGenreList(unique);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }, [])
+    const test = [ 
+        { symbol: "Jon", amount: 39, color: "#0033ad", inUSD: 39},
+        { symbol: "Godzila", amount: 39, color: "##06B4FE", inUSD: 39},
+        { symbol: "Gandalf", amount: 39, color: "#FECD06", inUSD: 39},
+        { symbol: "Vader", amount: 39, color: "#A46B5D", inUSD: 39}
+    ]
+    return(
+        <div className='bg-dark'>
+            <p>Pie chart should be here</p>
+            <main>
+                <svg width={width} height={width}>
+                    <Group top={half} left={half}>
+                        <Pie 
+                            data={test} 
+                            pieValue={(data) => data.amount * data.inUSD}
+                            outerRadius={half}
+                            innerRadius={({data}) => {
+                                // if there's active, and the active symbol is equal to the data symbol
+                                const size = active && active.symbol == data.symbol ? 90 : 30
+                                return half - size
+                            }}
+                            padAngle={0.01}
+                            >
+                                {pie =>{
+                                    return(
+                                        pie.arcs.map(arc =>{
+                                            return(
+                                                <g 
+                                                key={arc.data.amount} 
+                                                onMouseEnter={() => setActive(arc.data)} 
+                                                onMouseLeave={() => setActive(null)} >
+                                                    <path d={pie.path(arc)} fill={arc.data.color}></path>
+                                                </g>
+                                            )
+                                        })
+                                    )
+                                }}
+                            </Pie>
+                            {active  ? ( 
+                                <>
+                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={-20}>
+                                    {
+                                        `${Math.floor(active.genre)}`
+                                    }
+                                </Text>
+                                <Text textAnchor='middle' fill={active.color} fontSize={40} dy={20}>
+                                    {
+                                        `${active.amount} ${active.symbol}`
+                                    }
+                                </Text>
+                            </>
+                            ) : (
+                            <>
+                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={-20}>
+                                    {
+                                        `${Math.floor(test.reduce((acc, test) => acc * test.amount * test.inUSD, 0))}`
+                                    }
+                                    Records
+                                </Text>
+                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={20}>
+                                    {
+                                        `${test.length} Assets`
+                                    }
+                                </Text>
+                            </>
+                            )}
+                    </Group>
+                </svg>
+            </main>
+            {/* START OF THE SECOND PIE CHART */}
+            <p>Pie chart should be here</p>
+            <main>
+                <svg width={width} height={width}>
+                    <Group top={half} left={half}>
+                        <Pie 
+                            data={list} 
+                            pieValue={(data) => {
+                                
+                            }}
+                            outerRadius={half}
+                            innerRadius={({data}) => {
+                                // if there's active, and the active symbol is equal to the data symbol
+                                const size = active && active.genre == data.genre ? 90 : 30
+                                return half - size
+                            }}
+                            padAngle={0.01}
+                            >
+                                {pie =>{
+                                    return(
+                                        pie.arcs.map(arc =>{
+                                            return(
+                                                <g 
+                                                key={arc.data} 
+                                                onMouseEnter={() => setActive(arc.data)} 
+                                                onMouseLeave={() => setActive(null)} >
+                                                    <path d={pie.path(arc)} fill={"#D0223F"}
+                                                    ></path>
+                                                </g>
+                                            )
+                                        })
+                                    )
+                                }}
+                            </Pie>
+                            {active  ? ( 
+                                <>
+                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={-20}>
+                                    {
+                                        `${Math.floor(active.genre)}`
+                                    }
+                                    Records
+                                </Text>
+                                <Text textAnchor='middle' fill={active.color} fontSize={40} dy={20}>
+                                    {
+                                        `${active.amount} ${active.symbol}`
+                                    }
+                                </Text>
+                            </>
+                            ) : (
+                            <>
+                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={-20}>
+                                    {
+                                        `${Math.floor(list.reduce((acc, list) => acc * list.genre, 0))}`
+                                    }
+                                    Records
+                                </Text>
+                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={20}>
+                                    {
+                                        `${list.length} Records`
+                                    }
+                                </Text>
+                            </>
+                            )}
+                    </Group>
+                </svg>
+            </main>
         </div>
     )
 }
