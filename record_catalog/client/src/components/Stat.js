@@ -213,27 +213,27 @@ const Stat  = (props) => {
         { symbol: "Vader", amount: 39, color: "#A46B5D", inUSD: 39}
     ]
     const genres = [
-        { title: "Rock", count: rockList.length, color:"#FECD06"},
-        { title: "Metal", count: metalList.length, color:"#FECD06"},
-        { title: "Disco", count: discoList.length, color:"#FECD06"},
-        { title: "Soundtrack", count: soundtrackList.length, color:"#FECD06"},
-        { title: "Classical", count: classicalList.length, color:"#FECD06"},
-        { title: "Funk", count: funkList.length, color:"#FECD06"},
-        { title: "Electronic", count: electronicList.length, color:"#FECD06"},
-        { title: "Alternative", count: alternativeList.length, color:"#FECD06"},
-        { title: "Easy-Listening", count: easyListeningList.length, color:"#FECD06"},
-        { title: "Ambient", count: ambientList.length, color:"#FECD06"},
-        { title: "Blues", count: bluesList.length, color:"#FECD06"},
-        { title: "RnB", count: rnbList.length, color:"#FECD06"},
+        { title: "Rock", count: rockList.length, color:"#D10101"},
+        { title: "Metal", count: metalList.length, color:"#890000"},
+        { title: "Disco", count: discoList.length, color:"#C401C4"},
+        { title: "Soundtrack", count: soundtrackList.length, color:"#CDB801"},
+        { title: "Classical", count: classicalList.length, color:"#FEFEFE"},
+        { title: "Funk", count: funkList.length, color:"#07CA01"},
+        { title: "Electronic", count: electronicList.length, color:"#6BDFD0"},
+        { title: "Alternative", count: alternativeList.length, color:"#637EAE"},
+        { title: "Easy-Listening", count: easyListeningList.length, color:"#01F6FE"},
+        { title: "Ambient", count: ambientList.length, color:"#73B069"},
+        { title: "Blues", count: bluesList.length, color:"#0123FE"},
+        { title: "RnB", count: rnbList.length, color:"#F78C01"},
         { title: "Soul", count: soulList.length, color:"#FECD06"},
-        { title: "Hip-Hop", count: hiphopList.length, color:"#FECD06"},
-        { title: "Jazz", count: jazzList.length, color:"#FECD06"},
-        { title: "Pop", count: popList.length, color:"#FECD06"},
-        { title: "Country", count: countryList.length, color:"#FECD06"}
+        { title: "Hip-Hop", count: hiphopList.length, color:"#621FAE"},
+        { title: "Jazz", count: jazzList.length, color:"#003294"},
+        { title: "Pop", count: popList.length, color:"#D983FE"},
+        { title: "Country", count: countryList.length, color:"#A6875E"}
     ]
     return(
         <div className='bg-dark'>
-            <main>
+            {/* <main>
                 <svg width={width} height={width}>
                     <Group top={half} left={half}>
                         <Pie 
@@ -292,7 +292,7 @@ const Stat  = (props) => {
                             )}
                     </Group>
                 </svg>
-            </main>
+            </main> */}
             {/* START OF THE SECOND PIE CHART */}
             <p>Pie chart should be here</p>
             <main>
@@ -300,9 +300,7 @@ const Stat  = (props) => {
                     <Group top={half} left={half}>
                         <Pie 
                             data={genres} 
-                            pieValue={(data) => 
-                                data.count * data.length
-                            }
+                            pieValue={(data) => data.count }
                             outerRadius={half}
                             innerRadius={({data}) => {
                                 // if there's active, and the active symbol is equal to the data symbol
@@ -316,7 +314,7 @@ const Stat  = (props) => {
                                         pie.arcs.map(arc =>{
                                             return(
                                                 <g 
-                                                key={arc.data} 
+                                                key={arc.data.count} 
                                                 onMouseEnter={() => setActive(arc.data)} 
                                                 onMouseLeave={() => setActive(null)} >
                                                     <path d={pie.path(arc)} fill={arc.data.color}
@@ -329,26 +327,14 @@ const Stat  = (props) => {
                             </Pie>
                             {active  ? ( 
                                 <>
-                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={-20}>
-                                    {
-                                        `${Math.floor(active.title)}`
-                                    }
-                                    Records
-                                </Text>
                                 <Text textAnchor='middle' fill={active.color} fontSize={40} dy={20}>
                                     {
-                                        `${active.title} ${active.genre}`
+                                        `${active.count} ${active.title}`
                                     }
                                 </Text>
                             </>
                             ) : (
                             <>
-                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={-20}>
-                                    {
-                                        `${Math.floor(list.reduce((acc, list) => acc * list.genre, 0))}`
-                                    }
-                                    Records
-                                </Text>
                                 <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={20}>
                                     {
                                         `${list.length} Records`
