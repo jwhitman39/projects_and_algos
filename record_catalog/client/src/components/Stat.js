@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Pie } from "@visx/shape"
 import { Group } from "@visx/group"
 import { Text } from "@visx/text"
+import Vinyl from './Vinyl';
 
 const Stat  = (props) => {
     const width = 400
@@ -232,7 +233,8 @@ const Stat  = (props) => {
         { title: "Country", count: countryList.length, color:"#A6875E"}
     ]
     return(
-        <div className='bg-dark'>
+        <div className='mx-auto bg-dark' style={{display: "flex", justifyContent: "center"}}>
+            <Vinyl />
             {/* <main>
                 <svg width={width} height={width}>
                     <Group top={half} left={half}>
@@ -294,8 +296,8 @@ const Stat  = (props) => {
                 </svg>
             </main> */}
             {/* START OF THE SECOND PIE CHART */}
-            <p>Pie chart should be here</p>
-            <main>
+            {/* <p>Pie chart should be here</p> */}
+            <main style={{marginRight: "70px", marginTop: "20px"}}>
                 <svg width={width} height={width}>
                     <Group top={half} left={half}>
                         <Pie 
@@ -335,7 +337,7 @@ const Stat  = (props) => {
                             </>
                             ) : (
                             <>
-                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={20}>
+                                <Text textAnchor='middle' fill="#FEFEFE" fontSize={40} dy={20}>
                                     {
                                         `${list.length} Records`
                                     }

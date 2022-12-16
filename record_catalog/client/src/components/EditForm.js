@@ -152,7 +152,7 @@ const EditForm = (props) => {
                     { errors.position ? <span className='text-danger'>{errors.position.message}</span> :null }
                     <p>Note: Select the record that is AFTER this one!</p>
                     <p>
-                    <label className='form-label'>Tag 1: </label>
+                    <label className='form-label'>Tag: </label>
                     <select value={tag1} className='form-control' type="string" onChange={(e) => setTag1(e.target.value)}>
                         <option value=""></option>
                         <option value="Chill">Chill</option>

@@ -37,7 +37,7 @@ const OneRecord = () => {
             <p>Rating: <Link to={`/oneRating/${record.rating}`}>{record.rating}</Link> out of 5</p>
             <p>Play Count: {record.playCount} </p>
             <p>Position: {record.position} </p>
-            <p>Tag 1: {record.tag1} </p>
+            <p>Tag: {record.tag1} </p>
             <button className='btn btn-warning'><Link to={`/edit/${record._id}`}>Edit Record</Link></button>
             <button onClick={(e)=>deleteHandler(record._id)} className='btn btn-danger'>Delete Record!</button>
         </div>
