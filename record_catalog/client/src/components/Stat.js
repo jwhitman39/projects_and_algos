@@ -1,9 +1,11 @@
 import React, { useState, useEffect }  from 'react'
 import axios from 'axios';
-import { Pie } from "@visx/shape"
+import { Pie, Bar } from "@visx/shape"
 import { Group } from "@visx/group"
 import { Text } from "@visx/text"
 import Vinyl from './Vinyl';
+import ReactCSSTransitionGroup from 'react-transition-group'; // ES6
+
 
 const Stat  = (props) => {
     const width = 400
@@ -207,12 +209,6 @@ const Stat  = (props) => {
             console.log(err)
         })
     }, [])
-    const test = [ 
-        { symbol: "Jon", amount: 9, color: "#0033ad", inUSD: 39},
-        { symbol: "Godzila", amount: 339, color: "##06B4FE", inUSD: 39},
-        { symbol: "Gandalf", amount: 19, color: "#FECD06", inUSD: 39},
-        { symbol: "Vader", amount: 39, color: "#A46B5D", inUSD: 39}
-    ]
     const genres = [
         { title: "Rock", count: rockList.length, color:"#D10101"},
         { title: "Metal", count: metalList.length, color:"#890000"},
@@ -235,68 +231,6 @@ const Stat  = (props) => {
     return(
         <div className='mx-auto bg-dark' style={{display: "flex", justifyContent: "center"}}>
             <Vinyl />
-            {/* <main>
-                <svg width={width} height={width}>
-                    <Group top={half} left={half}>
-                        <Pie 
-                            data={test} 
-                            pieValue={(data) => data.amount * data.inUSD}
-                            outerRadius={half}
-                            innerRadius={({data}) => {
-                                // if there's active, and the active symbol is equal to the data symbol
-                                const size = active && active.symbol == data.symbol ? 90 : 30
-                                return half - size
-                            }}
-                            padAngle={0.01}
-                            >
-                                {pie =>{
-                                    return(
-                                        pie.arcs.map(arc =>{
-                                            return(
-                                                <g 
-                                                key={arc.data.amount} 
-                                                onMouseEnter={() => setActive(arc.data)} 
-                                                onMouseLeave={() => setActive(null)} >
-                                                    <path d={pie.path(arc)} fill={arc.data.color}></path>
-                                                </g>
-                                            )
-                                        })
-                                    )
-                                }}
-                            </Pie>
-                            {active  ? ( 
-                                <>
-                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={-20}>
-                                    {
-                                        `${Math.floor(active.genre)}`
-                                    }
-                                </Text>
-                                <Text textAnchor='middle' fill={active.color} fontSize={40} dy={20}>
-                                    {
-                                        `${active.amount} ${active.symbol}`
-                                    }
-                                </Text>
-                            </>
-                            ) : (
-                            <>
-                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={-20}>
-                                    {
-                                        `${Math.floor(genres.reduce((acc, genre) => acc * genres.amount, 0))}`
-                                    }
-                                    Records
-                                </Text>
-                                <Text textAnchor='middle' fill="#2C9E38" fontSize={40} dy={20}>
-                                    {
-                                        `${test.length} Assets`
-                                    }
-                                </Text>
-                            </>
-                            )}
-                    </Group>
-                </svg>
-            </main> */}
-            {/* START OF THE SECOND PIE CHART */}
-            {/* <p>Pie chart should be here</p> */}
             <main style={{marginRight: "70px", marginTop: "20px"}}>
                 <svg width={width} height={width}>
                     <Group top={half} left={half}>
