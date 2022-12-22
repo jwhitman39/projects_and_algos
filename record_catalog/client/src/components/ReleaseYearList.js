@@ -22,7 +22,7 @@ const ReleaseYearList = (props) => {
                 const sortedList = unique.sort((a,b) => a.releaseYear - b.releaseYear)
                 setList(sortedList)
             })
-    }, [])
+        }, [])
     return (
         <div className="p-3 mb-2 bg-dark text-white" style={{height:"100%"}}>
             <h1 className="text-warning">Release Years List</h1>
