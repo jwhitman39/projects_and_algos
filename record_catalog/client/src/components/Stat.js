@@ -5,7 +5,8 @@ import { Group } from "@visx/group"
 import { Text } from "@visx/text"
 import Vinyl from './Vinyl';
 import ReactCSSTransitionGroup from 'react-transition-group'; // ES6
-import ChartTwo from './ChartTwo';
+import ChartTwo from './ReleaseYearChart';
+import Semicircle from './Semicircle';
 
 
 const Stat  = (props) => {
@@ -232,7 +233,6 @@ const Stat  = (props) => {
     return(
         <div className='mx-auto bg-dark' style={{display: "flex", justifyContent: "center"}}>
             <Vinyl />
-            {/* <ChartTwo /> */}
             <main style={{marginRight: "70px", marginTop: "50px"}}>
                 <svg width={width} height={width}>
                     <Group top={half} left={half}>

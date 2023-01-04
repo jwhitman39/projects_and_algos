@@ -1,8 +1,8 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, CustomTooltip, Legend } from 'recharts';
-const ChartTwo = () => {
+import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, RadialBarChart, RadialBar, CustomToolTip, Legend } from 'recharts';
+const ReleaseYearChart = () => {
     const {releaseYear} = useParams()
     const [releaseYearList, setReleaseYearList ] = useState([])
     const [list, setList] = useState([])
@@ -72,4 +72,4 @@ const ChartTwo = () => {
             </div>
         )
 }
-export default ChartTwo;
+export default ReleaseYearChart;

@@ -3,8 +3,10 @@ import axios, { Axios } from "axios";
 import { Link } from "react-router-dom";
 import { useParams, useNavigate } from 'react-router-dom'
 import Stat from "./Stat";
-import ChartTwo from "./ChartTwo";
+import ChartTwo from "./ReleaseYearChart";
 import Vinyl from "./Vinyl";
+import Semicircle from "./Semicircle";
+import ReleaseYearChart from "./ReleaseYearChart";
 
 const RecordList = (props) => {
     const {record, setRecord} = props
@@ -189,7 +191,7 @@ const RecordList = (props) => {
     return (
         <div className="p-3 mb-2 bg-dark text-white" style={{height:"300%", width:"100%"}}>
             <Stat />
-            <ChartTwo />
+            <ReleaseYearChart />
             {/* <ChartTwo /> */}
             <h1 className="text-warning">Record List</h1>
             {/* <p>{list.length} total records</p>
