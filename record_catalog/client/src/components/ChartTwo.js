@@ -7,12 +7,6 @@ const ChartTwo = () => {
     const [releaseYearList, setReleaseYearList ] = useState([])
     const [list, setList] = useState([])
     const [countList, setCountList] = useState([])
-    const data = [
-        {name: 'Geeksforgeeks', students: 400},
-        {name: 'Technical scripter', students: 700},
-        {name: 'Geek-i-knack', students: 200},
-        {name: 'Geek-o-mania', students: 1000}
-        ];
     useEffect(() =>{
         // get all records
         axios.get('http://localhost:8000/api/allRecords')
@@ -54,28 +48,9 @@ const ChartTwo = () => {
     let arr = list
     let key = "releaseYear"
     console.log(findOcc(arr, key))
-    // useEffect(() =>{
-    //     axios.get('http://localhost:8000/api/allReleaseYears')
-    //     .then((res)=>{
-    //         console.log(res);
-    //         // filter list of release years
-    //         const uniqueReleaseYear = []
-    //         const unique = res.data.filter(element => {
-    //             const isDuplicate = uniqueReleaseYear.includes(element.releaseYear);
-    //             if (!isDuplicate) {
-    //                 uniqueReleaseYear.push(element.releaseYear)
-    //                 return true
-    //             }
-    //             return false
-    //         });
-    //         const sortedList = unique.sort((a,b) => a.releaseYear - b.releaseYear)
-    //         setReleaseYearList(sortedList)
-    //     })
-    //     console.log("unique release years:" +  releaseYearList + releaseYearList.length)
-    // }, [])
         return (
-            <div style={{margin: "50px"}}>
-                <BarChart width={1000} height={600} data={findOcc(arr, key)}>
+            <div style={{display: "flex", justifyContent: "center", marginRight: "70px", marginTop: "50px"}}>
+                <BarChart width={1600} height={600} data={findOcc(arr, key)}>
                     <Bar dataKey="occurrence" fill="cyan" />
                     <CartesianGrid stroke="#ccc" />
                     <XAxis dataKey="releaseYear" />

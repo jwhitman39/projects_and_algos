@@ -233,7 +233,7 @@ const Stat  = (props) => {
         <div className='mx-auto bg-dark' style={{display: "flex", justifyContent: "center"}}>
             <Vinyl />
             {/* <ChartTwo /> */}
-            <main style={{marginRight: "70px", marginTop: "20px"}}>
+            <main style={{marginRight: "70px", marginTop: "50px"}}>
                 <svg width={width} height={width}>
                     <Group top={half} left={half}>
                         <Pie 
