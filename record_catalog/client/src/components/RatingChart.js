@@ -2,9 +2,7 @@ import React, { useMemo, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, RadialBarChart, RadialBar, CustomToolTip, Legend } from 'recharts';
-const ReleaseYearChart = () => {
-    const {releaseYear} = useParams()
-    const [releaseYearList, setReleaseYearList ] = useState([])
+const RatingChart = () => {
     const [list, setList] = useState([])
     const [amountList, setAmountList] = useState([])
     useEffect(() =>{
@@ -20,7 +18,7 @@ const ReleaseYearChart = () => {
             console.log(err);
         })
     }, [])
-    function findOcc (arr, key) {
+    function findOcc (arr, key, key2) {
         let arr2 = [];
         arr.forEach((x)=>{
             // check if there is any object in arr2
@@ -40,14 +38,15 @@ const ReleaseYearChart = () => {
                 a[key] = x[key]
                 a["amount"]= 1
                 arr2.push(a)
-                arr2.sort((a,b) => a.releaseYear - b.releaseYear)
+                arr2.sort((a,b) => a.genre - b.genre)
             }
         })
         return arr2
     }
     let arr = list
-    let key = "releaseYear"
-    console.log(findOcc(arr, key))
+    let key = "genre"
+    let key2 = "rating"
+    console.log(findOcc(arr, key, key2))
     const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
         return (
@@ -68,14 +67,15 @@ const ReleaseYearChart = () => {
         }}
         return (
             <div style={{display: "flex", justifyContent: "center", marginRight: "70px", marginTop: "50px"}}>
-                <BarChart width={1600} height={600} data={findOcc(arr, key)}>
+                <BarChart width={1600} height={600} data={list}>
                     <CartesianGrid stroke="#ccc" />
-                    <XAxis dataKey="releaseYear" />
-                    <YAxis dataKey="amount" />
+                    <XAxis dataKey="genre" />
+                    <YAxis dataKey="rating" />
                     <Tooltip content={<CustomTooltip />}/>
-                    <Bar dataKey="amount" fill="royalBlue" barSize={15}/>
+                    <Bar dataKey="rating" fill="royalBlue" barSize={15}/>
+                    <Bar dataKey="rating" fill="royalBlue" barSize={15}/>
                 </BarChart>
             </div>
         )
 }
-export default ReleaseYearChart;
+export default RatingChart;
