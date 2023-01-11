@@ -23,11 +23,14 @@ const RatingChart = () => {
         arr.forEach((x)=>{
             // check if there is any object in arr2
             // which contains the key value
-            if(arr2.some((val)=>{ return val[key] == x[key] })){
+            if(arr2.some((val)=>{ return val[key] == x[key]})){
                 // if yes then increase the occurence by 1
                 arr2.forEach((k)=>{
                     if(k[key] === x[key]){
                         k["amount"]++
+                    }
+                    if(k[key2]=== x[key2]){
+                        k["ratingAmount5"]++
                     }
                 })
             }else{
@@ -36,7 +39,9 @@ const RatingChart = () => {
                 // set the amount to 1
                 let a = {}
                 a[key] = x[key]
+                a[key2] = x[key2]
                 a["amount"]= 1
+                a["ratingAmount5"]=0
                 arr2.push(a)
                 arr2.sort((a,b) => a.genre - b.genre)
             }
@@ -67,13 +72,13 @@ const RatingChart = () => {
         }}
         return (
             <div style={{display: "flex", justifyContent: "center", marginRight: "70px", marginTop: "50px"}}>
-                <BarChart width={1600} height={600} data={list}>
+                <BarChart width={1600} height={600} data={findOcc(arr, key, key2)}>
                     <CartesianGrid stroke="#ccc" />
                     <XAxis dataKey="genre" />
-                    <YAxis dataKey="rating" />
+                    <YAxis dataKey="amount" />
                     <Tooltip content={<CustomTooltip />}/>
-                    <Bar dataKey="rating" fill="royalBlue" barSize={15}/>
-                    <Bar dataKey="rating" fill="royalBlue" barSize={15}/>
+                    <Bar dataKey="amount" fill="royalBlue" barSize={15}/>
+                    <Bar dataKey="ratingAmount5" fill="red" barSize={15}/>
                 </BarChart>
             </div>
         )
