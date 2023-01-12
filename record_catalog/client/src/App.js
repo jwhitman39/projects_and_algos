@@ -16,8 +16,8 @@ import EditForm from "./components/EditForm";
 import ReleaseYearList from './components/ReleaseYearList.js';
 import Banner from './components/Banner.js';
 import Vinyl from './components/Vinyl.js';
-import Stat from './components/Stat.js';
 import CoverFlow from './components/CoverFlow.js';
+import Stats from './components/Stats.js';
 function App() {
   const [ record, setRecord ] = useState({})
   return (
@@ -29,6 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<RecordForm  />} />
           <Route path="/recordList" element={<RecordList record={record} setRecord={setRecord} />} />
+          <Route path="/stats" element={<Stats />} />
           <Route path="/releaseYearList" element={<ReleaseYearList record={record} setRecord={setRecord} />} />
           <Route path="/artistList" element={<ArtistList record={record} setRecord={setRecord} />} />
           <Route path="/genreList" element={<GenreList record={record} setRecord={setRecord} />} />

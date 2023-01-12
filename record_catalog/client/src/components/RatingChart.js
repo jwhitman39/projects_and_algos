@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, RadialBarChart, RadialBar, CustomToolTip, Legend } from 'recharts';
 const RatingChart = () => {
     const [list, setList] = useState([])
@@ -216,277 +216,277 @@ const RatingChart = () => {
     console.log("here's the 2-star rating count for country: " + countryTwoCount);
     console.log("here's the 1-star rating count for country: " + countryOneCount);
     const ratingCountList = [
-        {genre : "Rock", totalCount: rockTotal, fiveCount: rockFiveCount, fourCount: rockFourCount, threeCount: rockThreeCount, twoCount: rockTwoCount, oneCount: rockOneCount},
-        {genre : "Hip-Hop", totalCount: hiphopTotal, fiveCount: hiphopFiveCount, fourCount: hiphopFourCount, threeCount: hiphopThreeCount, twoCount: hiphopTwoCount, oneCount: hiphopOneCount},
-        {genre : "Jazz", totalCount: jazzTotal, jazzFiveCount: jazzFiveCount, fourCount: jazzFourCount, threeCount: jazzThreeCount, twoCount: jazzTwoCount, oneCount: jazzOneCount},
-        {genre : "Soundtrack", totalCount: soundtrackTotal, fiveCount: soundtrackFiveCount, fourCount: soundtrackFourCount, threeCount: soundtrackThreeCount, twoCount: soundtrackTwoCount, oneCount: soundtrackOneCount},
-        {genre : "Electronic", totalCount: electronicTotal, fiveCount: electronicFiveCount, fourCount: electronicFourCount, threeCount: electronicThreeCount, twoCount: electronicTwoCount, oneCount: electronicOneCount},
-        {genre : "Classical", totalCount: classicalTotal, fiveCount: classicalFiveCount, fourCount: classicalFourCount, threeCount: classicalThreeCount, twoCount: classicalTwoCount, oneCount: classicalOneCount},
-        {genre : "Blues", totalCount: bluesTotal, fiveCount: bluesFiveCount, fourCount: bluesFourCount, threeCount: bluesThreeCount, twoCount: bluesTwoCount, oneCount: bluesOneCount},
-        {genre : "Metal", totalCount: metalTotal, fiveCount: metalFiveCount, fourCount: metalFourCount, threeCount: metalThreeCount, twoCount: metalTwoCount, oneCount: metalOneCount},
-        {genre : "Easy-Listening", totalCount: easyListeningTotal, fiveCount: easyListeningFiveCount, fourCount: easyListeningFourCount, threeCount: easyListeningThreeCount, twoCount: easyListeningTwoCount, oneCount: easyListeningOneCount},
-        {genre : "Disco", totalCount: discoTotal, fiveCount: discoFiveCount, fourCount: discoFourCount, threeCount: discoThreeCount, twoCount: discoTwoCount, oneCount: discoOneCount},
-        {genre : "Alternative", totalCount: alternativeTotal, fiveCount: alternativeFiveCount, fourCount: alternativeFourCount, threeCount: alternativeThreeCount, twoCount: alternativeTwoCount, oneCount: alternativeOneCount},
-        {genre : "RnB", totalCount: rnbTotal, fiveCount: rnbFiveCount, fourCount: rnbFourCount, threeCount: rnbThreeCount, twoCount: rnbTwoCount, oneCount: rnbOneCount},
-        {genre : "Soul", totalCount: soulTotal, fiveCount: soulFiveCount, fourCount: soulFourCount, threeCount:soulThreeCount, twoCount:soulTwoCount, oneCount: soulOneCount},
-        {genre : "Ambient", totalCount: ambientTotal, fiveCount: ambientFiveCount, fourCount: ambientFourCount, threeCount: ambientThreeCount, twoCount: ambientTwoCount, oneCount: ambientOneCount},
-        {genre : "Pop", totalCount: popTotal, fiveCount: popFiveCount, fourCount: popFourCount, threeCount: popThreeCount, twoCount: popTwoCount, oneCount: popOneCount},
-        {genre : "Country", totalCount: countryTotal, fiveCount: countryFiveCount, fourCount: countryFourCount, threeCount: countryThreeCount, twoCount: countryTwoCount, oneCount: countryOneCount},
+        {genre : "Rock", total: rockTotal, fiveStars: rockFiveCount, fourStars: rockFourCount, threeStars: rockThreeCount, twoStars: rockTwoCount, oneStar: rockOneCount},
+        {genre : "Jazz", total: jazzTotal, fiveStars: jazzFiveCount, fourStars: jazzFourCount, threeStars: jazzThreeCount, twoStars: jazzTwoCount, oneStar: jazzOneCount},
+        {genre : "Soundtrack", total: soundtrackTotal, fiveStars: soundtrackFiveCount, fourStars: soundtrackFourCount, threeStars: soundtrackThreeCount, twoStars: soundtrackTwoCount, oneStar: soundtrackOneCount},
+        {genre : "Hip-Hop", total: hiphopTotal, fiveStars: hiphopFiveCount, fourStars: hiphopFourCount, threeStars: hiphopThreeCount, twoStars: hiphopTwoCount, oneStar: hiphopOneCount},
+        {genre : "Electronic", total: electronicTotal, fiveStars: electronicFiveCount, fourStars: electronicFourCount, threeStars: electronicThreeCount, twoStars: electronicTwoCount, oneStar: electronicOneCount},
+        {genre : "Classical", total: classicalTotal, fiveStars: classicalFiveCount, fourStars: classicalFourCount, threeStars: classicalThreeCount, twoStars: classicalTwoCount, oneStar: classicalOneCount},
+        {genre : "Blues", total: bluesTotal, fiveStars: bluesFiveCount, fourStars: bluesFourCount, threeStars: bluesThreeCount, twoStars: bluesTwoCount, oneStar: bluesOneCount},
+        {genre : "Metal", total: metalTotal, fiveStars: metalFiveCount, fourStars: metalFourCount, threeStars: metalThreeCount, twoStars: metalTwoCount, oneStar: metalOneCount},
+        {genre : "Easy-Listening", total: easyListeningTotal, fiveStars: easyListeningFiveCount, fourStars: easyListeningFourCount, threeStars: easyListeningThreeCount, twoStars: easyListeningTwoCount, oneStar: easyListeningOneCount},
+        {genre : "Disco", total: discoTotal, fiveStars: discoFiveCount, fourStars: discoFourCount, threeStars: discoThreeCount, twoStars: discoTwoCount, oneStar: discoOneCount},
+        {genre : "Alternative", total: alternativeTotal, fiveStars: alternativeFiveCount, fourStars: alternativeFourCount, threeStars: alternativeThreeCount, twoStars: alternativeTwoCount, oneStar: alternativeOneCount},
+        {genre : "RnB", total: rnbTotal, fiveStars: rnbFiveCount, fourStars: rnbFourCount, threeStars: rnbThreeCount, twoStars: rnbTwoCount, oneStar: rnbOneCount},
+        {genre : "Soul", total: soulTotal, fiveStars: soulFiveCount, fourStars: soulFourCount, threeStars:soulThreeCount, twoStars:soulTwoCount, oneStar: soulOneCount},
+        {genre : "Ambient", total: ambientTotal, fiveStars: ambientFiveCount, fourStars: ambientFourCount, threeStars: ambientThreeCount, twoStars: ambientTwoCount, oneStar: ambientOneCount},
+        {genre : "Pop", total: popTotal, fiveStars: popFiveCount, fourStars: popFourCount, threeStars: popThreeCount, twoStars: popTwoCount, oneStar: popOneCount},
+        {genre : "Country", total: countryTotal, fiveStars: countryFiveCount, fourStars: countryFourCount, threeStars: countryThreeCount, twoStars: countryTwoCount, oneStar: countryOneCount},
     ]
     const getFiveCountOfGenre = (label) => {
         if (label === 'Rock') {
-            return "Rock records with 5 stars: " + rockFiveCount;
+            return "5 stars: " + rockFiveCount;
         }
         if (label === 'Hip-Hop') {
-            return "Hip-Hop records with 5 stars: " + hiphopFiveCount;
+            return "5 stars: " + hiphopFiveCount;
         }
         if (label === 'Jazz') {
-            return "Jazz records with 5 stars: " + jazzFiveCount;
+            return "5 stars: " + jazzFiveCount;
         }
         if (label === 'Soundtrack') {
-            return "Soundtrack records with 5 stars: " + soundtrackFiveCount;
+            return "5 stars: " + soundtrackFiveCount;
         }
         if (label === 'Electronic') {
-            return "Electronic records with 5 stars: " + electronicFiveCount;
+            return "5 stars: " + electronicFiveCount;
         }
         if (label === 'Classical') {
-            return "Classical records with 5 stars: " + classicalFiveCount;
+            return "5 stars: " + classicalFiveCount;
         }
         if (label === 'Blues') {
-            return "Blues records with 5 stars: " + bluesFiveCount;
+            return "5 stars: " + bluesFiveCount;
         }
         if (label === 'Metal') {
-            return "Metal records with 5 stars: " + metalFiveCount;
+            return "5 stars: " + metalFiveCount;
         }
         if (label === 'Easy-Listening') {
-            return "Easy-Listening records with 5 stars: " + easyListeningFiveCount;
+            return "5 stars: " + easyListeningFiveCount;
         }
         if (label === 'Disco') {
-            return "Disco records with 5 stars: " + discoFiveCount;
+            return "5 stars: " + discoFiveCount;
         }
         if (label === 'Alternative') {
-            return "Alternative records with 5 stars: " + alternativeFiveCount;
+            return "5 stars: " + alternativeFiveCount;
         }
         if (label === 'RnB') {
-            return "RnB records with 5 stars: " + rnbFiveCount;
+            return "5 stars: " + rnbFiveCount;
         }
         if (label === 'Soul') {
-            return "Soul records with 5 stars: " + soulFiveCount;
+            return "5 stars: " + soulFiveCount;
         }
         if (label === 'Ambient') {
-            return "Ambient records with 5 stars: " + ambientFiveCount;
+            return "5 stars: " + ambientFiveCount;
         }
         if (label === 'Pop') {
-            return "Pop records with 5 stars: " + popFiveCount;
+            return "5 stars: " + popFiveCount;
         }
         if (label === 'Country') {
-            return "Country records with 5 stars: " + countryFiveCount;
+            return "5 stars: " + countryFiveCount;
         }
     }
     const getFourCountOfGenre = (label) => {
         if (label === 'Rock') {
-            return "Rock records with 4 stars: " + rockFourCount;
+            return "4 stars: " + rockFourCount;
         }
         if (label === 'Hip-Hop') {
-            return "Hip-Hop records with 4 stars: " + hiphopFourCount;
+            return "4 stars: " + hiphopFourCount;
         }
         if (label === 'Jazz') {
-            return "Jazz records with 4 stars: " + jazzFourCount;
+            return "4 stars: " + jazzFourCount;
         }
         if (label === 'Soundtrack') {
-            return "Soundtrack records with 4 stars: " + soundtrackFourCount;
+            return "4 stars: " + soundtrackFourCount;
         }
         if (label === 'Electronic') {
-            return "Electronic records with 4 stars: " + electronicFourCount;
+            return "4 stars: " + electronicFourCount;
         }
         if (label === 'Classical') {
-            return "Classical records with 4 stars: " + classicalFourCount;
+            return "4 stars: " + classicalFourCount;
         }
         if (label === 'Blues') {
-            return "Blues records with 4 stars: " + bluesFourCount;
+            return "4 stars: " + bluesFourCount;
         }
         if (label === 'Metal') {
-            return "Metal records with 4 stars: " + metalFourCount;
+            return "4 stars: " + metalFourCount;
         }
         if (label === 'Easy-Listening') {
-            return "Easy-Listening records with 4 stars: " + easyListeningFourCount;
+            return "4 stars: " + easyListeningFourCount;
         }
         if (label === 'Disco') {
-            return "Disco records with 4 stars: " + discoFourCount;
+            return "4 stars: " + discoFourCount;
         }
         if (label === 'Alternative') {
-            return "Alternative records with 4 stars: " + alternativeFourCount;
+            return "4 stars: " + alternativeFourCount;
         }
         if (label === 'RnB') {
-            return "RnB records with 4 stars: " + rnbFourCount;
+            return "4 stars: " + rnbFourCount;
         }
         if (label === 'Soul') {
-            return "Soul records with 4 stars: " + soulFourCount;
+            return "4 stars: " + soulFourCount;
         }
         if (label === 'Ambient') {
-            return "Ambient records with 4 stars: " + ambientFourCount;
+            return "4 stars: " + ambientFourCount;
         }
         if (label === 'Pop') {
-            return "Pop records with 4 stars: " + popFourCount;
+            return "4 stars: " + popFourCount;
         }
         if (label === 'Country') {
-            return "Country records with 4 stars: " + countryFourCount;
+            return "4 stars: " + countryFourCount;
         }
     }
     const getThreeCountOfGenre = (label) => {
         if (label === 'Rock') {
-            return "Rock records with 3 stars: " + rockThreeCount;
+            return "3 stars: " + rockThreeCount;
         }
         if (label === 'Hip-Hop') {
-            return "Hip-Hop records with 3 stars: " + hiphopThreeCount;
+            return "3 stars: " + hiphopThreeCount;
         }
         if (label === 'Jazz') {
-            return "Jazz records with 3 stars: " + jazzThreeCount;
+            return "3 stars: " + jazzThreeCount;
         }
         if (label === 'Soundtrack') {
-            return "Soundtrack records with 3 stars: " + soundtrackThreeCount;
+            return "3 stars: " + soundtrackThreeCount;
         }
         if (label === 'Electronic') {
-            return "Electronic records with 3 stars: " + electronicThreeCount;
+            return "3 stars: " + electronicThreeCount;
         }
         if (label === 'Classical') {
-            return "Classical records with 3 stars: " + classicalThreeCount;
+            return "3 stars: " + classicalThreeCount;
         }
         if (label === 'Blues') {
-            return "Blues records with 3 stars: " + bluesThreeCount;
+            return "3 stars: " + bluesThreeCount;
         }
         if (label === 'Metal') {
-            return "Metal records with 3 stars: " + metalThreeCount;
+            return "3 stars: " + metalThreeCount;
         }
         if (label === 'Easy-Listening') {
-            return "Easy-Listening records with 3 stars: " + easyListeningThreeCount;
+            return "3 stars: " + easyListeningThreeCount;
         }
         if (label === 'Disco') {
-            return "Disco records with 3 stars: " + discoThreeCount;
+            return "3 stars: " + discoThreeCount;
         }
         if (label === 'Alternative') {
-            return "Alternative records with 3 stars: " + alternativeThreeCount;
+            return "3 stars: " + alternativeThreeCount;
         }
         if (label === 'RnB') {
-            return "RnB records with 3 stars: " + rnbThreeCount;
+            return "3 stars: " + rnbThreeCount;
         }
         if (label === 'Soul') {
-            return "Soul records with 3 stars: " + soulThreeCount;
+            return "3 stars: " + soulThreeCount;
         }
         if (label === 'Ambient') {
-            return "Ambient records with 3 stars: " + ambientThreeCount;
+            return "3 stars: " + ambientThreeCount;
         }
         if (label === 'Pop') {
-            return "Pop records with 3 stars: " + popThreeCount;
+            return "3 stars: " + popThreeCount;
         }
         if (label === 'Country') {
-            return "Country records with 3 stars: " + countryThreeCount;
+            return "3 stars: " + countryThreeCount;
         }
     }
     const getTwoCountOfGenre = (label) => {
         if (label === 'Rock') {
-            return "Rock records with 2 stars: " + rockTwoCount;
+            return "2 stars: " + rockTwoCount;
         }
         if (label === 'Hip-Hop') {
-            return "Hip-Hop records with 2 stars: " + hiphopTwoCount;
+            return "2 stars: " + hiphopTwoCount;
         }
         if (label === 'Jazz') {
-            return "Jazz records with 2 stars: " + jazzTwoCount;
+            return "2 stars: " + jazzTwoCount;
         }
         if (label === 'Soundtrack') {
-            return "Soundtrack records with 2 stars: " + soundtrackTwoCount;
+            return "2 stars: " + soundtrackTwoCount;
         }
         if (label === 'Electronic') {
-            return "Electronic records with 2 stars: " + electronicTwoCount;
+            return "2 stars: " + electronicTwoCount;
         }
         if (label === 'Classical') {
-            return "Classical records with 2 stars: " + classicalTwoCount;
+            return "2 stars: " + classicalTwoCount;
         }
         if (label === 'Blues') {
-            return "Blues records with 2 stars: " + bluesTwoCount;
+            return "2 stars: " + bluesTwoCount;
         }
         if (label === 'Metal') {
-            return "Metal records with 2 stars: " + metalTwoCount;
+            return "2 stars: " + metalTwoCount;
         }
         if (label === 'Easy-Listening') {
-            return "Easy-Listening records with 2 stars: " + easyListeningTwoCount;
+            return "2 stars: " + easyListeningTwoCount;
         }
         if (label === 'Disco') {
-            return "Disco records with 2 stars: " + discoTwoCount;
+            return "2 stars: " + discoTwoCount;
         }
         if (label === 'Alternative') {
-            return "Alternative records with 2 stars: " + alternativeTwoCount;
+            return "2 stars: " + alternativeTwoCount;
         }
         if (label === 'RnB') {
-            return "RnB records with 2 stars: " + rnbTwoCount;
+            return "2 stars: " + rnbTwoCount;
         }
         if (label === 'Soul') {
-            return "Soul records with 2 stars: " + soulTwoCount;
+            return "2 stars: " + soulTwoCount;
         }
         if (label === 'Ambient') {
-            return "Ambient records with 2 stars: " + ambientTwoCount;
+            return "2 stars: " + ambientTwoCount;
         }
         if (label === 'Pop') {
-            return "Pop records with 2 stars: " + popTwoCount;
+            return "2 stars: " + popTwoCount;
         }
         if (label === 'Country') {
-            return "Country records with 2 stars: " + countryTwoCount;
+            return "2 stars: " + countryTwoCount;
         }
     }
     const getOneCountOfGenre = (label) => {
         if (label === 'Rock') {
-            return "Rock records with 1 star: " + rockOneCount;
+            return "1 star: " + rockOneCount;
         }
         if (label === 'Hip-Hop') {
-            return "Hip-Hop records with 1 star: " + hiphopOneCount;
+            return "1 star: " + hiphopOneCount;
         }
         if (label === 'Jazz') {
-            return "Jazz records with 1 star: " + jazzOneCount;
+            return "1 star: " + jazzOneCount;
         }
         if (label === 'Soundtrack') {
-            return "Soundtrack records with 1 star: " + soundtrackOneCount;
+            return "1 star: " + soundtrackOneCount;
         }
         if (label === 'Electronic') {
-            return "Electronic records with 1 star: " + electronicOneCount;
+            return "1 star: " + electronicOneCount;
         }
         if (label === 'Classical') {
-            return "Classical records with 1 star: " + classicalOneCount;
+            return "1 star: " + classicalOneCount;
         }
         if (label === 'Blues') {
-            return "Blues records with 1 star: " + bluesOneCount;
+            return "1 star: " + bluesOneCount;
         }
         if (label === 'Metal') {
-            return "Metal records with 1 star: " + metalOneCount;
+            return "1 star: " + metalOneCount;
         }
         if (label === 'Easy-Listening') {
-            return "Easy-Listening records with 1 star: " + easyListeningOneCount;
+            return "1 star: " + easyListeningOneCount;
         }
         if (label === 'Disco') {
-            return "Disco records with 1 star: " + discoOneCount;
+            return "1 star: " + discoOneCount;
         }
         if (label === 'Alternative') {
-            return "Alternative records with 1 star: " + alternativeOneCount;
+            return "1 star: " + alternativeOneCount;
         }
         if (label === 'RnB') {
-            return "RnB records with 1 star: " + rnbOneCount;
+            return "1 star: " + rnbOneCount;
         }
         if (label === 'Soul') {
-            return "Soul records with 1 star: " + soulOneCount;
+            return "1 star: " + soulOneCount;
         }
         if (label === 'Ambient') {
-            return "Ambient records with 1 star: " + ambientOneCount;
+            return "1 star: " + ambientOneCount;
         }
         if (label === 'Pop') {
-            return "Pop records with 1 star: " + popOneCount;
+            return "1 star: " + popOneCount;
         }
         if (label === 'Country') {
-            return "Country records with 1 star: " + countryOneCount;
+            return "1 star: " + countryOneCount;
         }
     }
     const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
         return (
-            <div className="bg-dark mx-auto" style={{padding: "5px"}}>
+            <div className="bg-dark mx-auto text-white" style={{padding: "5px"}}>
                 { payload[0].value > 1 ?  
                     <p className="label">{`${label} : ${payload[0].value}  records`}</p>
                     : <p className="label">{`${label} : ${payload[0].value}  record`}</p>
@@ -505,15 +505,15 @@ const RatingChart = () => {
                 <BarChart width={1600} height={600} data={ratingCountList}>
                     <CartesianGrid stroke="#ccc" />
                     <XAxis dataKey="genre" />
-                    <YAxis dataKey="totalCount" />
+                    <YAxis dataKey="total" />
                     <Tooltip content={<CustomTooltip />}/>
                     <Legend />
-                    <Bar dataKey="totalCount" fill="royalBlue" barSize={10}/>
-                    <Bar dataKey="fiveCount" fill="gold" barSize={10}/>
-                    <Bar dataKey="fourCount" fill="silver" barSize={10}/>
-                    <Bar dataKey="threeCount" fill="brown" barSize={10}/>
-                    <Bar dataKey="twoCount" fill="darkGreen" barSize={10}/>
-                    <Bar dataKey="oneCount" fill="red" barSize={10}/>
+                    <Bar name="Total" dataKey="total" fill="royalBlue" barSize={20}/>
+                    <Bar name={<Link style={{color: "gold"}} to={`/oneRating/5`}>5 Stars</Link>} dataKey="fiveStars" fill="gold" barSize={20}/>
+                    <Bar name={<Link style={{color: "silver"}} to={`/oneRating/4`}>4 Stars</Link>} dataKey="fourStars" fill="silver" barSize={20}/>
+                    <Bar name={<Link style={{color: "brown"}} to={`/oneRating/3`}>3 Stars</Link>} dataKey="threeStars" fill="brown" barSize={20}/>
+                    <Bar name={<Link style={{color: "darkGreen"}} to={`/oneRating/2`}>2 Stars</Link>} dataKey="twoStars" fill="darkGreen" barSize={20}/>
+                    <Bar name={<Link style={{color: "red"}} to={`/oneRating/1`}>1 Star</Link>} dataKey="oneStar" fill="red" barSize={20}/>
                 </BarChart>
             </div>
         )

@@ -9,7 +9,7 @@ import ChartTwo from './ReleaseYearChart';
 import Semicircle from './Semicircle';
 
 
-const Stat  = (props) => {
+const BigPie  = (props) => {
     const width = 400
     const half = width / 2
     const [active, setActive] = useState(null);
@@ -286,4 +286,4 @@ const Stat  = (props) => {
         </div>
     )
 }
-export default Stat;
+export default BigPie;
