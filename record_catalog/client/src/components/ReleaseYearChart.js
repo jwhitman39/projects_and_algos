@@ -67,7 +67,7 @@ const ReleaseYearChart = () => {
         );
         }}
         return (
-            <div style={{display: "flex", justifyContent: "center", marginRight: "70px", marginTop: "50px"}}>
+            <div style={{display: "flex", justifyContent: "center", marginRight: "80px", marginTop: "80px", marginBottom: "80px"}}>
                 <BarChart width={1600} height={600} data={findOcc(arr, key)}>
                     <CartesianGrid stroke="#ccc" />
                     <XAxis dataKey="releaseYear" />

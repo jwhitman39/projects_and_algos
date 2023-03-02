@@ -12,6 +12,7 @@ import BigPie from "./BigPie";
 const RecordList = (props) => {
     const {record, setRecord} = props
     const [ activeRecord, setActiveRecord ] = useState(0)
+    const [ newestRecord, setNewestRecord ] = useState(0)
     const [ albumArt, setAlbumArt ] = useState('')
     const [ albumName, setAlbumName ] = useState('')
     const [ artist, setArtist ] = useState('')
@@ -21,6 +22,8 @@ const RecordList = (props) => {
     const [ position, setPosition ] = useState('')
     const [ playCount, setPlayCount ] = useState('')
     const [list, setList ] = useState([])
+    const [rawList, setRawList ] = useState([])
+    const [mostRecent, setMostRecent ] = useState(0)
     const [chillList, setChillList ] = useState([])
     const [upbeatList, setUpbeatList ] = useState([])
     const [rockOutList, setRockOutList ] = useState([])
@@ -32,8 +35,6 @@ const RecordList = (props) => {
         .then((res)=>{
             // log results
             console.log(res);
-            // set list to the results
-            setList(res.data);
             // sort the results by position
             const sortedList = res.data.sort((a,b) => a.position - b.position)
             // set list to sortedList
@@ -115,6 +116,18 @@ const RecordList = (props) => {
             setMovieTimeList(res.data);
         })
     }, [])
+    useEffect(() =>{
+        axios.get('http://localhost:8000/api/allRecords')
+        .then((res) =>{
+            setMostRecent(res.data[res.data.length - 1])
+            axios.get(`http://localhost:8000/api/oneRecord/${mostRecent._id}`)
+            .then((res)=>{
+                setNewestRecord(res.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        })
+    })
     const randomRecord = (e) =>{
         const len = list.length
         const newRecord = list[Math.floor(Math.random() * len)]
@@ -191,7 +204,22 @@ const RecordList = (props) => {
     }
     return (
         <div className="p-3 mb-2 bg-dark text-white" style={{height:"300%", width:"100%"}}>
+            
             <h1 className="text-warning">Record List</h1>
+                <div style={{marginLeft: "90%"}}>
+                    <h2>Recently Added:</h2>
+                </div>
+                <div className="col col-2" style={{marginLeft:"90%"}}>
+                    <img className="col-4" alt= "" src={newestRecord.albumArt}></img>
+                    <p style={{fontSize:"10px"}} >#{newestRecord.position}</p>
+                    <div className="my-4" style={{fontSize: "10px"}}>
+                        <Link to={`/oneRecord/${newestRecord._id}`}>{newestRecord.albumName}</Link>
+                        <div><Link to={`/oneArtist/${newestRecord.artist}`}>{newestRecord.artist}</Link></div>
+                        <div><Link to={`/oneGenre/${newestRecord.genre}`}>{newestRecord.genre}</Link></div>
+                        <div><Link to={`/oneYear/${newestRecord.releaseYear}`}>{newestRecord.releaseYear}</Link></div>
+                        <div><Link to={`/oneTag/${newestRecord.tag1}`}>{newestRecord.tag1}</Link></div>
+                    </div>
+                </div>
             { activeRecord ? 
                 <div className="col col-4 mx-auto">
                     <img className="col-10" alt= "" src={activeRecord.albumArt}></img>

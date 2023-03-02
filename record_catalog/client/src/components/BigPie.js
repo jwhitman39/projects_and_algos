@@ -231,7 +231,7 @@ const BigPie  = (props) => {
         { title: "Country", count: countryList.length, color:"#A6875E"}
     ]
     return(
-        <div className='mx-auto bg-dark' style={{display: "flex", justifyContent: "center"}}>
+        <div className='mx-auto bg-dark' style={{display: "flex", justifyContent: "center", marginTop: "80px", marginBottom: "80px"}}>
             <Vinyl />
             <main style={{marginRight: "70px", marginTop: "50px"}}>
                 <svg width={width} height={width}>
